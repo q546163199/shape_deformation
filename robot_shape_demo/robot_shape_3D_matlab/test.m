@@ -1,15 +1,11 @@
 clc;clear;close all
-<<<<<<< HEAD
 addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
 addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
 addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
 addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
 %%
 robot = robot_6DOF(0,0,0);
-%%
-=======
 %% Definition of ,''the global frame:
->>>>>>> 8a7cf29c3cc5d5325e4f5b2e941c60811204a086
 cable_length = 2;
 %% target shape
 state0 = [-0.2 -0.2 0 0 0 0]; % positon and orientation of left point
