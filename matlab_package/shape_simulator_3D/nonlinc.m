@@ -29,7 +29,6 @@ if Re ~= 0.0,
     i=i+1;ceq(i)=f_evaluate(s0,a_epsilon, 0.0);
 end
 
-
 % Constraints at s=s1
 % Orientations
 i=i+1;ceq(i)=state1(4)-f_evaluate(s1,a_phi, state0(4));

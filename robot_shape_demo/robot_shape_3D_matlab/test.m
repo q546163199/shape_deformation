@@ -5,7 +5,7 @@ addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\ro
 addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
 %%
 robot = robot_6DOF(0,0,0);
-%% Definition of ,''the global frame:
+%%
 cable_length = 2;
 %% target shape
 state0 = [-0.2 -0.2 0 0 0 0]; % positon and orientation of left point

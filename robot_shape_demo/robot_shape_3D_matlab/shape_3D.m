@@ -1,4 +1,8 @@
 function [shape, PHI, T, para_temp] = shape_3D(state_init, state_end, cable_length, param0)
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
 %% Definition of the global frame:
 global Rf Rt Re D L
 global n s0 s1 ds lx ly lz state0 state1
