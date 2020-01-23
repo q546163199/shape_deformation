@@ -1,5 +1,6 @@
 clc;clear;close all
-addpath('..\..\custom_feature_package')
+addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\custom_feature_package')
+addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
 %%
 robot = robot_UR5(0,0,0);
 %%
