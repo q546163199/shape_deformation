@@ -1,4 +1,4 @@
-function [shape, PHI, T, para_temp] = shape_3D(state_init, state_end, cable_length, param0)
+function [p_dat, PHI_dat, T_dat, param1] = shape_3D(state_init, state_end, cable_length, param0)
 addpath('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/matlab_package/shape_simulator_3D')
 addpath('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/matlab_package/shape_simulator_3D/')
 addpath('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/matlab_package/shape_simulator_3D/Tools')
@@ -18,21 +18,24 @@ kmax = 2;             % Use 2nd order approximation
 n = 2 * kmax + 2;     % number of parameters per varaible
 %% left and right constraints
 state0 = state_init;
+lx = 0.4;
+ly = 0.4;
+lz = -0.3;
+ax = pi/4;
+ay = pi/2 + pi/8 + pi/4;
+az = pi/4;
 state1 = state_end;
 %%
 switch nargin
     case 3
         param0 = zeros(4*n, 1);
-        fprintf('%d', nargin)
+        %%fprintf('%d', nargin)
 end
 %% Computation
 [param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
 [p_dat, PHI_dat, T_dat] = plotDLO(param1);
-%% output
-shape = p_dat;
-PHI = PHI_dat;
-T = T_dat;
-para_temp = param1;
+
+
 
 
 

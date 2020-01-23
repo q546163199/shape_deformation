@@ -1,10 +1,4 @@
 clc;clear;close all
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
-%%
-robot = robot_6DOF(0,0,0);
 %% Definition of ,''the global frame:
 cable_length = 2;
 %% target shape
@@ -18,7 +12,7 @@ az = pi/4;
 state1 = [state0(1)+lx state0(2)+ly state0(3)+lz state0(4)+ax state0(5)+ay state0(6)+az];
 param0 = zeros(24, 1);
 %%
-[shape, PHI, T, para_temp] = shape_3D(state0, state1, cable_length, param0);
+[shape, PHI, T, para_temp] = shape_3D(state0, state1, cable_length);
 %%
 figure
 plot3(shape(:,1),shape(:,2),shape(:,3),'k-','linewidth',3);hold on
