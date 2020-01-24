@@ -12,8 +12,8 @@ robot = robot_UR5('UR5', bias)
 N = 100
 q = (np.ones([6, 1]) / 3)
 
-# plt.ion()
-# plt.show()
+plt.ion()
+plt.show()
 
 for i in range(N):
     q = q + np.ones([6, 1]) / 10000 * i

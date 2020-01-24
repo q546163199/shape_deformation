@@ -1,10 +1,8 @@
 clc;clear;close all
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
-%%
-robot = robot_6DOF(0,0,0);
+% addpath('C:\Users\q5461\OneDrive\ï¿½Äµï¿½\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
+% addpath('C:\Users\q5461\OneDrive\ï¿½Äµï¿½\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
+% addpath('C:\Users\q5461\OneDrive\ï¿½Äµï¿½\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
+% addpath('C:\Users\q5461\OneDrive\ï¿½Äµï¿½\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
 %% Definition of ,''the global frame:
 cable_length = 2;
 %% target shape

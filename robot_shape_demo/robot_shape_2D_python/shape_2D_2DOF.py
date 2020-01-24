@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 import sys
-sys.path.append('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/python_package/robot_simulator_2D')
+sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator_2D')
 from robot_2DOF import robot_2DOF
 eng = matlab.engine.start_matlab()
 ## robot init

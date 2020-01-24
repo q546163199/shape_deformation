@@ -70,6 +70,7 @@ def DrawFrame(T, scalor, lw, ax):
 
 def DrawAllFrame(*args):
     num = len(args)
+    print(num)
     lw = 1
     if num == 4:
         T_world = args[0]
@@ -82,11 +83,10 @@ def DrawAllFrame(*args):
     elif num == 6:
         T_world = args[0]
         ax = args[5]
-
-        if args[1] != None:
+        if args[1] is not None:
             T_base_UR5 = args[1]
             DrawFrame(T_base_UR5, 0.5, lw, ax)
-        if args[2] != None:
+        if args[2] is not None:
             T_end_UR5 = args[2]
             DrawFrame(T_end_UR5, 0.5, lw, ax)
 

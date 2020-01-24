@@ -1,7 +1,6 @@
 function [p_dat, PHI_dat, T_dat, param1] = shape_3D(state_init, state_end, cable_length, param0)
-addpath('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/matlab_package/shape_simulator_3D')
-addpath('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/matlab_package/shape_simulator_3D/')
-addpath('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/matlab_package/shape_simulator_3D/Tools')
+addpath('/home/qjm/ShapeDeformationProj/github/shape_deformation/matlab_package/shape_simulator_3D')
+addpath('/home/qjm/ShapeDeformationProj/github/shape_deformation/matlab_package/shape_simulator_3D/Tools')
 %% Definition of the global frame:
 global Rf Rt Re D L
 global n s0 s1 ds lx ly lz state0 state1
@@ -18,30 +17,19 @@ kmax = 2;             % Use 2nd order approximation
 n = 2 * kmax + 2;     % number of parameters per varaible
 %% left and right constraints
 state0 = state_init;
-lx = 0.4;
-ly = 0.4;
-lz = -0.3;
-ax = pi/4;
-ay = pi/2 + pi/8 + pi/4;
-az = pi/4;
 state1 = state_end;
+lx = state1(1) - state0(1);
+ly = state1(2) - state0(2);
+lz = state1(3) - state0(3);
+ax = state1(4) - state0(4);
+ay = state1(5) - state0(5);
+az = state1(6) - state0(6);
+
 %%
 switch nargin
     case 3
         param0 = zeros(4*n, 1);
-        %%fprintf('%d', nargin)
 end
 %% Computation
 [param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
 [p_dat, PHI_dat, T_dat] = plotDLO(param1);
-
-
-
-
-
-
-
-
-
-
-

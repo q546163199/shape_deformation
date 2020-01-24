@@ -3,14 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-class robot_UR5:
+class robot_6DOF:
 
-    d1 = 89.2 / 1000
-    d4 = 109.3 / 1000
-    d5 = 94.75 / 1000
-    d6 = 82.5 / 1000
-    a2 = -425 / 1000
-    a3 = -392 / 1000
+    d1 = 89.2 / 250
+    d4 = 109.3 / 250
+    d5 = 94.75 / 250
+    d6 = 82.5 / 250
+    a2 = -425 / 250
+    a3 = -392 / 250
     alpha1 = np.pi / 2
     alpha4 = np.pi / 2
     alpha5 = -np.pi / 2
@@ -159,9 +159,9 @@ class robot_UR5:
         ax.plot([T0[0][3], T1[0][3], T2[0][3], T3[0][3], T4[0][3], T5[0][3], T6[0][3]],
                 [T0[1][3], T1[1][3], T2[1][3], T3[1][3], T4[1][3], T5[1][3], T6[1][3]],
                 [T0[2][3], T1[2][3], T2[2][3], T3[2][3], T4[2][3], T5[2][3], T6[2][3]],
-                color='black', marker='*')
+                color='black', marker='*', linewidth=2)
 
-        limit = 5 / 3
+        limit = 5 / 1
         ax.set_xlim3d(-limit, limit)
         ax.set_ylim3d(-limit, limit)
         ax.set_zlim3d(-limit, limit)
@@ -187,77 +187,3 @@ class robot_UR5:
                 traj[(N-1) * i + j, 0:3] = np.array([x[(N-1) * i + j], y[(N-1) * i + j], z[(N-1) * i + j]]).reshape(1, 3)
 
         return traj
-
-
-
-
-
-
-
-
-#
-# function[qt, qdt, qddt] = jtraj(obj, q0, q1, tv, qd0, qd1)
-# if length(tv) > 1
-#     tscal = max(tv);
-#     t = tv(:) / tscal;
-# else
-#     tscal = 1;
-#     t = (0:(tv-1))'/(tv-1); % normalized time from 0 -> 1
-# end
-#
-# q0 = q0(:);
-# q1 = q1(:);
-#
-# if nargin == 4
-#     qd0 = zeros(size(q0));
-#     qd1 = qd0;
-# elseif
-# nargin == 6
-# qd0 = qd0(:);
-# qd1 = qd1(:);
-# else
-# error('incorrect number of arguments')
-# end
-#
-# % compute
-# the
-# polynomial
-# coefficients
-# A = 6 * (q1 - q0) - 3 * (qd1 + qd0) * tscal;
-# B = -15 * (q1 - q0) + (8 * qd0 + 7 * qd1) * tscal;
-# C = 10 * (q1 - q0) - (6 * qd0 + 4 * qd1) * tscal;
-# E = qd0 * tscal; % as the
-# t
-# vector
-# has
-# been
-# normalized
-# F = q0;
-#
-# tt = [t. ^ 5 t. ^ 4 t. ^ 3 t. ^ 2 t ones(size(t))];
-# c = [A B C zeros(size(A)) E F]
-# ';
-#
-# qt = tt * c;
-#
-# % compute
-# optional
-# velocity
-# if nargout >= 2
-#     c = [zeros(size(A)) 5 * A 4 * B 3 * C  zeros(size(A)) E]
-#     ';
-#     qdt = tt * c / tscal;
-# end
-#
-# % compute
-# optional
-# acceleration
-# if nargout == 3
-#     c = [zeros(size(A))  zeros(size(A)) 20 * A 12 * B 6 * C  zeros(size(A))]
-#     ';
-#     qddt = tt * c / tscal ^ 2;
-# end
-# end
-#
-# end
-# end

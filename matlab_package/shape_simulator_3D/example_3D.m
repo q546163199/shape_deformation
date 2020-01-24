@@ -1,6 +1,6 @@
 clc;clear;close all
 %%
-addpath('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/matlab_package/shape_simulator_3D/Tools');
+addpath('/home/qjm/ShapeDeformationProj/github/shape_deformation/matlab_package/shape_simulator_3D/Tools');
 %% Definition of the global frame:
 global Rf Rt Re D L
 global n s0 s1 ds lx ly lz state0 state1
