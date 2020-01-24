@@ -29,4 +29,3 @@ T_base_shape = T_data[0:4, 0:4]
 T_end_shape = T_data[0:4, (51*4-4):(51*4)]
 DrawAllFrame(T_world, T_base_ur5, T_end_ur5, T_base_shape, T_end_shape, ax)
 plt.pause(20)
-np.savetxt()

@@ -4,13 +4,13 @@ import sys
 sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/custom_feature_package')
 sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator_3D')
 from user_define_package import Euler2T, T2Euler, DrawAllFrame
+from shape_representation import Fourier_curve_3D
 from  robot_6DOF import robot_6DOF
 import matlab.engine
 eng = matlab.engine.start_matlab()
 ##
 bias = [0, 0, 0]
 robot = robot_6DOF('6DOF', bias)
-print(robot.name)
 ##
 state0 = np.array([1, 2, 0, 0, 0, 0])
 T = np.array([[-0.951824224709527, -0.215406747948987,   0.218244308503453,   1.86510304766092],
@@ -41,10 +41,15 @@ np.savetxt('T_data', T_data)
 plt.ion()
 plt.show()
 ##
+s, G, shape_Fourier = Fourier_curve_3D(p_data, cable_length, 5)
+print(np.linalg.norm(p_data - shape_Fourier, ord=2))
+##
 q = robot.ikine(T)
 joint = q[0, :]
 ax = robot.plot(joint)
 ax.plot(p_data[:, 0], p_data[:, 1], p_data[:, 2], color='red', linewidth=2)
+ax.plot(shape_Fourier[:, 0], shape_Fourier[:, 1], shape_Fourier[:, 2])
+##
 T_world = np.eye(4)
 T_base_ur5 = np.eye(4)
 T_end_ur5 = T
@@ -52,4 +57,3 @@ T_base_shape = T_data[0:4, 0:4]
 T_end_shape = T_data[0:4, (51*4-4):(51*4)]
 DrawAllFrame(T_world, T_base_ur5, T_end_ur5, T_base_shape, T_end_shape, ax)
 plt.pause(0)
-
