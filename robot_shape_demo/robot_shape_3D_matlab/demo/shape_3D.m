@@ -20,11 +20,16 @@ n = 2 * kmax + 2;     % number of parameters per varaible
 %% left and right constraints
 state0 = state_init;
 state1 = state_end;
+lx = state1(1) - state0(1);
+ly = state1(2) - state0(2);
+lz = state1(3) - state0(3);
+ax = state1(4) - state0(4);
+ay = state1(5) - state0(5);
+az = state1(6) - state0(6);
 %%
 switch nargin
     case 3
         param0 = zeros(4*n, 1);
-        fprintf('%d', nargin)
 end
 %% Computation
 [param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
