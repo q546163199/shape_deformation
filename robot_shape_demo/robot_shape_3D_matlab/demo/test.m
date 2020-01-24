@@ -16,7 +16,7 @@ az = pi/4;
 state1 = [state0(1)+lx state0(2)+ly state0(3)+lz state0(4)+ax state0(5)+ay state0(6)+az];
 param0 = zeros(24, 1);
 %%
-[shape, PHI, T, para_temp] = shape_3D(state0, state1, cable_length);
+[shape, PHI, T, para_temp] = shape_3D(state0, state1, cable_length, param0);
 %%
 figure
 plot3(shape(:,1),shape(:,2),shape(:,3),'k-','linewidth',3);hold on
