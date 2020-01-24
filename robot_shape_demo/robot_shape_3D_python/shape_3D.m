@@ -33,3 +33,4 @@ end
 %% Computation
 [param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
 [p_dat, PHI_dat, T_dat] = plotDLO(param1);
+

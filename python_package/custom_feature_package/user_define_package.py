@@ -99,10 +99,3 @@ def DrawAllFrame(*args):
     else:
         print('Invalid dimension input, please try again')
 
-
-
-# T = Euler2T(np.array([0.1, 0.2, 0.3]))
-# print(T)
-# angle = T2Euler(T)
-# print(angle)
-# DrawAllFrame(1, 2)
