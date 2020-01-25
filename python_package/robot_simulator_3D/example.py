@@ -27,5 +27,5 @@ T_world = np.eye(4)
 T_base_UR5 = T0
 T_end_UR5 = T6
 DrawAllFrame(T_world, T_base_UR5, T_end_UR5, ax)
-plt.pause(0)
+plt.pause(20)
 

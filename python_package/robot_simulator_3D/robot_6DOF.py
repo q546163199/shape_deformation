@@ -22,12 +22,13 @@ class robot_6DOF:
         self.biasz = bias[2]
 
     def fkine(self, q):
-        q1 = q[0]
-        q2 = q[1]
-        q3 = q[2]
-        q4 = q[3]
-        q5 = q[4]
-        q6 = q[5]
+        q = np.array(q).reshape(1, 6)
+        q1 = q[0, 0]
+        q2 = q[0, 1]
+        q3 = q[0, 2]
+        q4 = q[0, 3]
+        q5 = q[0, 4]
+        q6 = q[0, 5]
 
         A0 = np.array([[1, 0, 0, self.biasx],
                        [0, 1, 0, self.biasy],

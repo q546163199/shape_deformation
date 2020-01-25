@@ -5,7 +5,6 @@ import sys
 sys.path.append(r'/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/python_package/custom_feature_package')
 from user_define_package import DrawAllFrame, Euler2T
 
-
 ##
 bias = [0, 0, 0]
 robot = robot_UR5('UR5', bias)
@@ -21,6 +20,7 @@ for i in range(12, 80):
     T[2, 3] = traj[i, 2]
 
     q = robot.ikine(T)
+    print(robot.fkine(q[0, :])[0])
     ax = robot.plot(q[2, :])
     T_world = np.eye(4)
     T_base_UR5 = np.eye(4)
@@ -28,5 +28,5 @@ for i in range(12, 80):
     DrawAllFrame(T_world, T_base_UR5, T_end_UR5, ax)
     plt.pause(0.01)
 
-plt.pause(0)
+plt.pause(10)
 
