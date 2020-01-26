@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from robot_UR5 import robot_UR5
 import sys
 sys.path.append(r'/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/python_package/custom_feature_package')
-from user_define_package import DrawAllFrame, Euler2T
+from user_define import DrawAllFrame, Euler2T
 
 ##
 bias = [0, 0, 0]

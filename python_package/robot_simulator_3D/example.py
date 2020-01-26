@@ -4,7 +4,7 @@ import sys
 import math
 from robot_UR5 import robot_UR5
 sys.path.append('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/python_package/custom_feature_package')
-from user_define_package import DrawAllFrame
+from user_define import DrawAllFrame
 
 bias = [0.1, 0.2, 0.3]
 robot = robot_UR5('UR5', bias)
