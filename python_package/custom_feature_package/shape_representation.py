@@ -89,12 +89,12 @@ def Fourier_curve_3D(shape, length, N):
 
 
 ## test code
-shape = np.loadtxt('p_data')
-s, G, shape_Fourier = Fourier_curve_3D(shape, 6, 5)
-print(np.linalg.norm(shape - shape_Fourier, ord=2))
-plt.ion()
-plt.show()
-ax = plt.axes(projection='3d')
-ax.plot(shape[:, 0], shape[:, 1], shape[:, 2])
-ax.plot(shape_Fourier[:, 0], shape_Fourier[:, 1], shape_Fourier[:, 2])
-plt.pause(5)
+# shape = np.loadtxt('p_data')
+# s, G, shape_Fourier = Fourier_curve_3D(shape, 6, 5)
+# print(np.linalg.norm(shape - shape_Fourier, ord=2))
+# plt.ion()
+# plt.show()
+# ax = plt.axes(projection='3d')
+# ax.plot(shape[:, 0], shape[:, 1], shape[:, 2])
+# ax.plot(shape_Fourier[:, 0], shape_Fourier[:, 1], shape_Fourier[:, 2])
+# plt.pause(5)

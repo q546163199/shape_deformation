@@ -70,7 +70,6 @@ def DrawFrame(T, scalor, lw, ax):
 
 def DrawAllFrame(*args):
     num = len(args)
-    print(num)
     lw = 1
     if num == 4:
         T_world = args[0]

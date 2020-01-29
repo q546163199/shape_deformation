@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import sys
 sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/custom_feature_package')
 sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator_3D')
-from user_define_package import Euler2T, T2Euler, DrawAllFrame
+from user_define import Euler2T, T2Euler, DrawAllFrame
 from shape_representation import Fourier_curve_3D
 from  robot_6DOF import robot_6DOF
 import matlab.engine
@@ -35,9 +35,9 @@ para = para_temp
 p_data = np.array(p_data)
 phi_data = np.array(phi_data)
 T_data = np.array(T_data)
-np.savetxt('p_data', p_data)
-np.savetxt('phi_data', phi_data)
-np.savetxt('T_data', T_data)
+np.savetxt(r'/home/qjm/ShapeDeformationProj/github/shape_deformation/robot_shape_demo/robot_shape_3D_python/datafile/p_data.txt', p_data)
+np.savetxt(r'/home/qjm/ShapeDeformationProj/github/shape_deformation/robot_shape_demo/robot_shape_3D_python/datafile/phi_data.txt', phi_data)
+np.savetxt(r'/home/qjm/ShapeDeformationProj/github/shape_deformation/robot_shape_demo/robot_shape_3D_python/datafile/T_data.txt', T_data)
 plt.ion()
 plt.show()
 ##
