@@ -1,9 +1,9 @@
 clc;clear;close all
-addpath('..\shape_simulator_3D\')
-addpath('..\shape_simulator_3D\Tools\')
-addpath('..\robot_simulator_3D_class')
-addpath('..\')
-addpath('..\shape_representation\Fourier')
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\custom_feature_package')
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
+addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
 %%
 robot = robot_6DOF(0,0,0);
 %% Definition of the global frame:
@@ -46,7 +46,7 @@ for i=1:number
     [p_dat, PHI_dat, T_dat] = plotDLO(param1);
     param0 = param1;
     %% Fourier calculation
-    [coff,G,shape_est_Fourier] = Fourier_series_3D(p_dat,L,6);
+    [coff,G,shape_est_Fourier] = Fourier_curve_3D(p_dat,L,5);
     %%
     robot.plot(q(1,:));hold on
     plot3(p_dat(:,1),p_dat(:,2),p_dat(:,3),'r-.','linewidth',2);hold on
