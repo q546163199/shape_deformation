@@ -69,32 +69,27 @@ def DrawFrame(T, scalor, lw, ax):
 
 
 def DrawAllFrame(*args):
-    num = len(args)
     lw = 1
-    if num == 4:
+    ax = args[5]
+    if args[0] is not None:
         T_world = args[0]
-        T_base_UR5 = args[1]
-        T_end_UR5 = args[2]
-        ax = args[3]
         DrawFrame(T_world, 0.5, lw, ax)
-        DrawFrame(T_base_UR5, 0.5, lw, ax)
-        DrawFrame(T_end_UR5, 0.5, lw, ax)
-    elif num == 6:
-        T_world = args[0]
-        ax = args[5]
-        if args[1] is not None:
-            T_base_UR5 = args[1]
-            DrawFrame(T_base_UR5, 0.5, lw, ax)
-        if args[2] is not None:
-            T_end_UR5 = args[2]
-            DrawFrame(T_end_UR5, 0.5, lw, ax)
 
+    if args[1] is not None:
+        T_base_ur5 = args[1]
+        DrawFrame(T_base_ur5, 0.5, lw, ax)
+
+    if args[2] is not None:
+        T_end_ur5 = args[2]
+        DrawFrame(T_end_ur5, 0.5, lw, ax)
+
+    if args[3] is not None:
         T_base_shape = args[3]
-        T_end_shape = args[4]
-
-        DrawFrame(T_world, 0.5, lw, ax)
         DrawFrame(T_base_shape, 0.5, lw, ax)
+
+    if args[4] is not None:
+        T_end_shape = args[4]
         DrawFrame(T_end_shape, 0.5, lw, ax)
-    else:
-        print('Invalid dimension input, please try again')
+
+
 
