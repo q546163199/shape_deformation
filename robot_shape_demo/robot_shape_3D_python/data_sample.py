@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/custom_feature_package')
-sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator_3D')
+sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator')
 from user_define import Euler2T, T2Euler, DrawAllFrame
 from shape_representation import Fourier_curve_3D
 from  robot_6DOF import robot_6DOF

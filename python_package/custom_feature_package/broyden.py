@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def transpose(x):
     x = np.transpose([x])
     return x

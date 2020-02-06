@@ -91,7 +91,7 @@ def Fourier_curve_3D(shape, length, N):
 # test code
 if __name__ == '__main__':
     shape = np.loadtxt('p_data')
-    s, G, shape_Fourier = Fourier_curve_3D(shape, 6, 5)
+    s, G, shape_Fourier = Fourier_curve_3D(shape, 6, 20)
     print(np.linalg.norm(shape - shape_Fourier, ord=2))
     plt.ion()
     plt.show()
