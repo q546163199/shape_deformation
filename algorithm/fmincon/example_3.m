@@ -1,5 +1,6 @@
 clc;clear;close all
 %%
+tic
 K = rand(10,8) * 10;
 N = 100;
 for i=1:100
@@ -20,3 +21,4 @@ options = optimset('LargeScale','off','display','iter');
 %%
 [A1,fval] = fmincon('fun4',A0,A,b,Aeq,beq,lb,ub,nonlcon,options);
 K - A1
+toc
