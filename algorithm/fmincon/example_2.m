@@ -11,3 +11,4 @@ nonlcon = [];
 options = optimset('LargeScale','off','display','iter');
 %%
 [x,fval] = fmincon('fun3',x0,A,b,Aeq,beq,lb,ub,nonlcon,options);
+x
