@@ -121,7 +121,7 @@ class robot_UR5:
 
         ## solve joint3
         mmm = d[4] * (np.sin(theta6) * (nx * np.cos(theta1) + ny * np.sin(theta1)) + np.cos(theta6) * (ox * np.cos(theta1) + oy * np.sin(theta1))) \
-            - d[5] * (ax * np.cos(theta1) + ay * np.sin(theta1)) + px * np.cos(theta1) + py * np.sin(theta1);
+            - d[5] * (ax * np.cos(theta1) + ay * np.sin(theta1)) + px * np.cos(theta1) + py * np.sin(theta1)
 
         nnn = pz - d[0] - az * d[5] + d[4] * (oz * np.cos(theta6) + nz * np.sin(theta6))
         theta3[0:2, :] = np.arccos((np.power(mmm, 2) + np.power(nnn, 2) - np.square(a[1]) - np.square(a[2])) / (2 * a[1] * a[2]))
