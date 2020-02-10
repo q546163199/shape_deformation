@@ -34,6 +34,36 @@ def T2Euler(T):
     return angle
 
 
+def Euler2Quad(angle):
+    roll = angle[0]
+    pitch = angle[1]
+    yaw = angle[2]
+    cy = np.cos(yaw * 0.5)
+    sy = np.sin(yaw * 0.5)
+    cp = np.cos(pitch * 0.5)
+    sp = np.sin(pitch * 0.5)
+    cr = np.cos(roll * 0.5)
+    sr = np.sin(roll * 0.5)
+    w = cy * cp * cr + sy * sp * sr
+    x = cy * cp * sr - sy * sp * cr
+    y = sy * cp * sr + cy * sp * cr
+    z = sy * cp * cr - cy * sp * sr
+    quad = np.array([w, x, y, z])
+    return quad
+
+
+def Quqd2Euler(quad):
+    q0 = quad[0]
+    q1 = quad[1]
+    q2 = quad[2]
+    q3 = quad[3]
+
+    roll = np.arctan2(2 * (q2*q3 + q0*q1), q0**2 - q1**2 - q2**2 + q3**2)
+    pitch = np.arcsin(2 * (q0*q2 - q1*q3))
+    yaw = np.arctan2(2 * (q1*q2 + q0*q3), q0**2 + q1**2 - q2**2 - q3**2)
+    return roll, pitch, yaw
+
+
 def DrawFrame(T, scalor, lw, ax):
     m, n = np.shape(T)
     if m != 4:
@@ -91,5 +121,13 @@ def DrawAllFrame(*args):
         T_end_shape = args[4]
         DrawFrame(T_end_shape, 0.5, lw, ax)
 
+
+if __name__ == '__main__':
+    angle = np.array([0.1, 0.2, 0.3])
+    quad = Euler2Quad(angle)
+    quad1 = np.array([-0.99114048481, -0.00530699081719, 0.00178255140781, -0.133612662554])
+    angle1 = Quqd2Euler(quad)
+    print(angle1)
+    print(np.rad2deg(Quqd2Euler(quad1)))
 
 
