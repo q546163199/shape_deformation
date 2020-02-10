@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/custom_feature_package')
-sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator_3D')
+sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator')
 from user_define import Euler2T, T2Euler, DrawAllFrame
 from shape_representation import Fourier_curve_3D
 from  robot_6DOF import robot_6DOF
@@ -16,7 +16,7 @@ state0 = np.array([1, 2, 0, 0, 0, 0])
 T = np.array([[-0.951824224709527, -0.215406747948987,   0.218244308503453,   1.86510304766092],
               [-0.220054417855173,  0.975482731713992,   0.00308112158621450, 1.52780847532721],
               [-0.213557248620901, -0.0450929380928978, -0.975889301353192,  -0.784181787984638],
-              [0,                  0,                   0,                   1]])
+              [ 0,                  0,                   0,                   1]])
 lx = T[0, 3] - state0[0]
 ly = T[1, 3] - state0[1]
 lz = T[2, 3] - state0[2]
@@ -43,6 +43,7 @@ plt.show()
 ##
 s, G, shape_Fourier = Fourier_curve_3D(p_data, cable_length, 5)
 print(np.linalg.norm(p_data - shape_Fourier, ord=2))
+print(s.shape)
 ##
 q = robot.ikine(T)
 joint = q[0, :]

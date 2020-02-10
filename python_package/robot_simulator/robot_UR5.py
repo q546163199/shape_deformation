@@ -2,6 +2,9 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import sys
+sys.path.append('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/python_package/custom_feature_package')
+from user_define import DrawAllFrame, Euler2T
 
 class robot_UR5:
 
@@ -190,75 +193,93 @@ class robot_UR5:
         return traj
 
 
+def example():
+    bias = [0.1, 0.2, 0.3]
+    robot = robot_UR5('UR5', bias)
+
+    q = np.deg2rad([30, 30, 30, 20, 60, 50])
+    [T6, T5, T4, T3, T2, T1, T0] = robot.fkine(q)
+    angle = robot.ikine(T6)
+
+    for i in range(6):
+        error = T6 - robot.fkine(angle[i, :])[0]
+        print(np.linalg.norm(error, ord=2))
+
+    ##
+    plt.ion()
+    plt.show()
+    ax = robot.plot(q)
+
+    ##
+    T_world = np.eye(4)
+    T_base_UR5 = T0
+    T_end_UR5 = T6
+    T_base_shape = None
+    T_end_shape = None
+    DrawAllFrame(T_world, T_base_UR5, T_end_UR5, T_base_shape, T_end_shape, ax)
+    plt.pause(20)
 
 
+def example_circle():
+    bias = [0, 0, 0]
+    robot = robot_UR5('UR5', bias)
+
+    ##
+    traj = robot.circle(np.float(0.5))
+    row, col = np.shape(traj)
+
+    for i in range(12, 80):
+        T = Euler2T(np.array([0.1, 0.1, 0.1]))
+        T[0, 3] = traj[i, 0]
+        T[1, 3] = traj[i, 1]
+        T[2, 3] = traj[i, 2]
+
+        q = robot.ikine(T)
+        print(robot.fkine(q[0, :])[0])
+        ax = robot.plot(q[2, :])
+        T_world = np.eye(4)
+        T_base_UR5 = np.eye(4)
+        T_base_shape = None
+        T_end_shape = None
+        T_end_UR5 = T
+        DrawAllFrame(T_world, T_base_UR5, T_end_UR5, T_base_shape, T_end_shape, ax)
+        plt.pause(0.01)
+
+    plt.pause(10)
 
 
+def example_dynamic():
+    bias = [0.1, 0.1, 0.1]
+    robot = robot_UR5('UR5', bias)
+
+    ##
+    N = 100
+    q = (np.ones([6, 1]) / 3)
+
+    plt.ion()
+    plt.show()
+
+    for i in range(N):
+        q = q + np.ones([6, 1]) / 10000 * i
+        [T6, T5, T4, T3, T2, T1, T0] = robot.fkine(q)
+        ax = robot.plot(q)
+        ##
+        T_world = np.eye(4)
+        T_base_UR5 = T0
+        T_end_UR5 = T6
+        T_base_shape = None
+        T_end_shape = None
+        DrawAllFrame(T_world, T_base_UR5, T_end_UR5, T_base_shape, T_end_shape, ax)
+        angle = robot.ikine(T6)
+        for j in range(8):
+            error = T6 - robot.fkine(angle[j, :])[0]
+            print(np.linalg.norm(error, ord=2))
+        plt.pause(0.01)
+
+    plt.pause(0)
 
 
-#
-# function[qt, qdt, qddt] = jtraj(obj, q0, q1, tv, qd0, qd1)
-# if length(tv) > 1
-#     tscal = max(tv);
-#     t = tv(:) / tscal;
-# else
-#     tscal = 1;
-#     t = (0:(tv-1))'/(tv-1); % normalized time from 0 -> 1
-# end
-#
-# q0 = q0(:);
-# q1 = q1(:);
-#
-# if nargin == 4
-#     qd0 = zeros(size(q0));
-#     qd1 = qd0;
-# elseif
-# nargin == 6
-# qd0 = qd0(:);
-# qd1 = qd1(:);
-# else
-# error('incorrect number of arguments')
-# end
-#
-# % compute
-# the
-# polynomial
-# coefficients
-# A = 6 * (q1 - q0) - 3 * (qd1 + qd0) * tscal;
-# B = -15 * (q1 - q0) + (8 * qd0 + 7 * qd1) * tscal;
-# C = 10 * (q1 - q0) - (6 * qd0 + 4 * qd1) * tscal;
-# E = qd0 * tscal; % as the
-# t
-# vector
-# has
-# been
-# normalized
-# F = q0;
-#
-# tt = [t. ^ 5 t. ^ 4 t. ^ 3 t. ^ 2 t ones(size(t))];
-# c = [A B C zeros(size(A)) E F]
-# ';
-#
-# qt = tt * c;
-#
-# % compute
-# optional
-# velocity
-# if nargout >= 2
-#     c = [zeros(size(A)) 5 * A 4 * B 3 * C  zeros(size(A)) E]
-#     ';
-#     qdt = tt * c / tscal;
-# end
-#
-# % compute
-# optional
-# acceleration
-# if nargout == 3
-#     c = [zeros(size(A))  zeros(size(A)) 20 * A 12 * B 6 * C  zeros(size(A))]
-#     ';
-#     qddt = tt * c / tscal ^ 2;
-# end
-# end
-#
-# end
-# end
+if __name__ == '__main__':
+    # example()
+    # example_circle()
+    example_dynamic()

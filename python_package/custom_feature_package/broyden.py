@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def transpose(x):
     x = np.transpose([x])
     return x
@@ -20,29 +21,26 @@ def byoyden(xt, yt, gamma, case):
         return At
 
 
+# test code
+if __name__ == '__main__':
+    N = 300
+    A = np.random.rand(3, 4) * 2
+    xt = None
+    yt = None
+    for i in range(N):
+        x = np.random.rand(1, 4)
+        y = A.dot(x.transpose())
 
+        if xt is None:
+            xt = x
+        else:
+            xt = np.vstack((xt, x))
 
+        if yt is None:
+            yt = y.transpose()
+        else:
+            yt = np.vstack((yt, y.transpose()))
 
-
-## test code
-N = 300
-A = np.random.rand(3, 4) * 2
-xt = None
-yt = None
-for i in range(N):
-    x = np.random.rand(1, 4)
-    y = A.dot(x.transpose())
-
-    if xt is None:
-        xt = x
-    else:
-        xt = np.vstack((xt, x))
-
-    if yt is None:
-        yt = y.transpose()
-    else:
-        yt = np.vstack((yt, y.transpose()))
-
-At = byoyden(xt, yt, 0.2, 1)
-error = A - At
-print(error)
+    At = byoyden(xt, yt, 0.2, 1)
+    error = A - At
+    print(error)

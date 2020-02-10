@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-## elbow_up = 1
-## elbow_down = 2
+# elbow_up = 1
+# elbow_down = 2
 
 class robot_3DOF:
     def __init__(self, name, length, bias, elbow_case):
@@ -108,45 +108,33 @@ class robot_3DOF:
         plt.xlim((-0.2, axis_limit))
         plt.ylim((-0.2, axis_limit))
 
-#
-# function
-# circle(obj, radius, bias)
-# n = 100;
-# theta = linspace(0, 2 * pi, n);
-# for i=1:n
-# traj(i, 1) = radius * cos(theta(i)) + bias.x;
-# traj(i, 2) = radius * sin(theta(i)) + bias.y;
-# end
-# plot(traj(:, 1), traj(:, 2), '--', 'linewidth', 2)
-# end
-#
-# function
-# handle = rectangle(obj, p1x, p1y, p2x, p2y)
-# % %
-# % ---------- p2
-# % | |
-# % | |
-# % p1 - --------
-# % %
-# p1.x = p1x;
-# p1.y = p1y;
-# p2.x = p2x;
-# p2.y = p2y;
-# % %
-# handle = plot([p1.x p2.x p2.x p1.x p1.x], [p1.y p1.y p2.y p2.y p1.y], 'k-', 'linewidth', 2);
-# end
-#
-# function
-# handle = workspace(obj)
-# maxlength = obj.link1_length + obj.link2_length + obj.link3_length + sqrt(obj.biasx ^ 2 + obj.biasy ^ 2);
-# N = 200;
-# theta = linspace(0, 2 * pi, N);
-# for i=1:N
-# x(i) = maxlength * cos(theta(i));
-# y(i) = maxlength * sin(theta(i));
-# end
-# handle = plot(x, y, '--b', 'linewidth', 2);
-# end
-#
-# end
-# end
+
+if __name__ == '__main__':
+    length = [1, 1, 1]
+    bias = [0.2, 0.3]
+    robot = robot_3DOF('robot', length, bias, 2)
+
+    plt.ion()
+    plt.show()
+
+    N = 200
+    theta = np.linspace(0, 2 * np.pi, N)
+    pitch = np.deg2rad(210)
+
+    traj = []
+    for i in range(N):
+        traj.append([0.2 + 0.3 * math.cos(theta[i]), 0.3 + 0.3 * math.sin(theta[i])])
+    traj = np.array(traj)
+
+    for i in range(N):
+        p3 = [traj[i, 0], traj[i, 1]]
+        q = robot.ikine(p3, pitch + theta[i])
+        robot.plot(q)
+        plt.plot(traj[1:i, 0], traj[1:i, 1], linestyle='--', color='red', lw=2)
+        plt.xlim((-1.5, 1.5))
+        plt.ylim((-1.5, 1.5))
+        plt.pause(0.01)
+        #
+        rad = q.sum() - np.pi
+        # print(np.rad2deg(rad), '  ', robot.fkine(q))
+        print(robot.fkine(q))
