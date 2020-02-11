@@ -123,7 +123,7 @@ def DrawAllFrame(*args):
 
 
 if __name__ == '__main__':
-    angle = np.array([0.1, 0.2, 0.3])
+    angle = np.array([0.31, 0.52, 1.3])
     quad = Euler2Quad(angle)
     quad1 = np.array([-0.99114048481, -0.00530699081719, 0.00178255140781, -0.133612662554])
     angle1 = Quqd2Euler(quad)
