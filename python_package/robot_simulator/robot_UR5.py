@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import sys
-sys.path.append('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/python_package/custom_feature_package')
+sys.path.append('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/python_package/custom_package')
 from user_define import DrawAllFrame, Euler2T
 
 class robot_UR5:
