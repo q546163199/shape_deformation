@@ -1,0 +1,3 @@
+https://web.casadi.org/
+https://web.casadi.org/get/
+https://mybinder.org/v2/gh/casadi/live-python/master?filepath=index.ipynb
