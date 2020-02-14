@@ -1,24 +1,19 @@
 clc;clear;close all
 %%
-tic
-K = rand(10,8) * 10;
-N = 100;
-for i=1:100
-    x(:,i) = rand(8,1) * 3 + (rand-0.5) / 2;
-    y(:,i) = K * x(:,i);
-end
-save data
+fun = @(x,a)exp(x(1))*(4*x(1)^2+2*x(2)^2+4*x(1)*x(2)+2*x(2)+a);
 %%
-A0 = rand(10,8);
-A = [];
-b = [];
-Aeq = [];
-beq = [];
+x0 = [1 1];
+A = [2 1;3 5];
+b = [4;10];
+Aeq = [1 -2];
+beq = [-1];
 lb = [];
 ub = [];
-nonlcon = [];
 options = optimset('LargeScale','off','display','iter');
 %%
-[A1,fval] = fmincon('fun4',A0,A,b,Aeq,beq,lb,ub,nonlcon,options);
-K - A1
-toc
+[x,fval] = fmincon(@(x)fun(x,1),x0,A,b,Aeq,beq,lb,ub,@nlinconfun);
+%%
+function[c,ceq] = nlinconfun(x)
+c = 1.5-x(1)*x(2);
+ceq = x(1)^2+x(2)^2-3;
+end

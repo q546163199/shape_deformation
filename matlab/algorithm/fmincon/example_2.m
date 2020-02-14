@@ -1,14 +1,19 @@
 clc;clear;close all
 %%
-x0 = [1 1 1];
-A = [];
-b = [];
-Aeq = [];
-beq = [];
+fun = @(x,a)exp(x(1))*(4*x(1)^2+2*x(2)^2+4*x(1)*x(2)+2*x(2)+a);
+%%
+x0 = [1 1];
+A = [2 1;3 5];
+b = [4;10];
+Aeq = [1 -2];
+beq = [-1];
 lb = [];
 ub = [];
-nonlcon = [];
 options = optimset('LargeScale','off','display','iter');
 %%
-[x,fval] = fmincon('fun3',x0,A,b,Aeq,beq,lb,ub,nonlcon,options);
-x
+[x,fval] = fmincon(@(x)fun(x,1),x0,A,b,Aeq,beq,lb,ub,@nlinconfun,options);
+%%
+function[c,ceq] = nlinconfun(x)
+c = 1.5-x(1)*x(2);
+ceq = x(1)^2+x(2)^2-3;
+end

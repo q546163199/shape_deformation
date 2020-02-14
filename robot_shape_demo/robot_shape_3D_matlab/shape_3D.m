@@ -1,7 +1,4 @@
-function [p_dat, PHI_dat, T_dat, para_temp] = shape_3D(state_init, state_end, cable_length, param0)
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
+function [p_dat, PHI_dat, T_dat, param1] = shape_3D(state_init, state_end, cable_length, param0)
 %% Definition of the global frame:
 global Rf Rt Re D L
 global n s0 s1 ds lx ly lz state0 state1
@@ -33,14 +30,3 @@ end
 %% Computation
 [param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
 [p_dat, PHI_dat, T_dat] = plotDLO(param1);
-%% output
-para_temp = param1;
-
-
-
-
-
-
-
-
-

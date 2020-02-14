@@ -1,8 +1,5 @@
 clc;clear;close all
-% addpath('C:\Users\q5461\OneDrive\�ĵ�\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
-% addpath('C:\Users\q5461\OneDrive\�ĵ�\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
-% addpath('C:\Users\q5461\OneDrive\�ĵ�\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
-% addpath('C:\Users\q5461\OneDrive\�ĵ�\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
+path_set
 %% Definition of ,''the global frame:
 cable_length = 2;
 %% target shape

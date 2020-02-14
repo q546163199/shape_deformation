@@ -1,9 +1,5 @@
 clc;clear;close all
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\custom_feature_package')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
+path_set
 %%
 robot = robot_6DOF(0,0,0);
 %% Definition of the global frame:
@@ -39,8 +35,7 @@ param0 = zeros(4*n,1);
 [param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
 [p_dat, PHI_dat, T_dat] = plotDLO(param1);
 %% Fourier calculation
-N = 5;
-[s,~,shape_est_Fourier] = Fourier_curve_3D(p_dat,L,N);
+[s,~,shape_est_Fourier] = Fourier_curve_3D(p_dat,L,10);
 %%
 q = robot.ikine(T);
 figure

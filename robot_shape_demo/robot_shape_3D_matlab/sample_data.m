@@ -1,9 +1,4 @@
 clc;clear;close all
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\robot_simulator_3D\programme_modified')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\custom_feature_package')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_simulator_3D\Tools')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab_package\shape_representation\Fourier')
 %%
 robot = robot_6DOF(0,0,0);
 %% Definition of the global frame:

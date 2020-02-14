@@ -1,11 +1,11 @@
 clc;clear;close all
+path_set
 %%
-addpath('..\')
 load('data','xt','yt','shape_real_save','G');
 %%
 rowNum = size(yt,1);
 %% Broyden rule 
-[At,ut,dt] = Broyden(xt,yt,0.1);
+[At,ut,dt] = Broyden(xt,yt,0.1,1);
 %% calculate y_est,namely the estimation of coefficients of Fourier
 yt_est(1,:) = yt(1,:);
 for i=1:(rowNum-1) 
@@ -31,7 +31,7 @@ for i=1:rowNum
     plot(shape_error(1:i),'k-*','linewidth',2);hold on
     grid on
     drawnow
-    pause(0.1)
+    pause(0.01)
 end
 %% figure comparison(three shapes for each motion,each time)
 save(['At'],'At')
