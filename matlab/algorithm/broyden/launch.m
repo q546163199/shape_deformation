@@ -7,6 +7,6 @@ for i=1:N
    yt(i,:) = (A * xt(i,:)')';
 end
 %%
-At = Broyden(xt,yt,0.2,1);
+At = Broyden(xt,yt,0.2,2);
 A - At
 

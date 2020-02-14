@@ -1,8 +1,8 @@
 clc;clear;close all
 %%
 tic
-addpath('/home/qjm/ShapeDeformationProj/github/shape_deformation/matlab_package/shape_simulator_3D/Tools');
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\shape_deformation\matlab_package\shape_simulator_3D/Tools')
+% addpath('/home/qjm/ShapeDeformationProj/github/shape_deformation/matlab_package/shape_simulator_3D/Tools');
+addpath('Tools')
 %% Definition of the global frame:
 global Rf Rt Re D L
 global n s0 s1 ds lx ly lz state0 state1
@@ -44,6 +44,3 @@ T_base_shape = T_dat(1:4,(1*4-3):(1*4));
 T_end_shape = T_dat(1:4,(51*4-3):(51*4));
 DrawAllFrame(T_world,T_base_ur5,T_end_ur5,T_base_shape,T_end_shape)
 toc
-
-% C = costfun(param0)
-% [c,ceq] = nonlinc(param0)

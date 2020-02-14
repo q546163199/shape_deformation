@@ -1,5 +1,6 @@
 clc;clear;close all
-addpath('/home/qjm/ShapeDeformationProj/casadi-linux-matlabR2014b-v3.5.1')
+% addpath('/home/qjm/ShapeDeformationProj/casadi-linux-matlabR2014b-v3.5.1')
+addpath('D:\David\Package\casadi')
 %%
 xleft = 0;
 yleft = 0;
