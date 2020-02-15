@@ -1,6 +1,6 @@
 clc;clear;close all
 %%
-addpath('..\..\shape_simulator_2D\')
+addpath('..\..\..\package\shape_simulator_2D');
 %% shape intialization
 xleft = 0.9503;
 yleft = 0.2940;

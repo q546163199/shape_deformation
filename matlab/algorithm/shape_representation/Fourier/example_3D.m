@@ -1,7 +1,7 @@
 clc;clear;close all
 %%
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\matlab_package\shape_simulator_3D');
-addpath('C:\Users\q5461\OneDrive\ÎÄµµ\GitHub\matlab_package\shape_simulator_3D\Tools\');
+addpath('..\..\..\package\shape_simulator_3D');
+addpath('..\..\..\package\shape_simulator_3D\Tools');
 %% Definition of the global frame:
 global Rf Rt Re D L
 global n s0 s1 ds lx ly lz state0 state1
