@@ -1,4 +1,4 @@
-function [At,ut,dt] = broyden(xt,yt,gamma,choice)
+function [At,ut,dt] = Broyden(xt,yt,gamma,choice)
 %% 
 N = size(xt,1);
 %%
