@@ -21,4 +21,4 @@ L6.qlim = [-360 360]*pi/180;
 
 robot=SerialLink([L1 L2 L3 L4 L5 L6],'name','UR5'); %连接连杆，机器人取名manman
 robot.display();
-% robot.teach
+robot.teach
