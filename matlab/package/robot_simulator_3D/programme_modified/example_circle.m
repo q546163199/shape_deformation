@@ -1,6 +1,4 @@
 clc;clear;close all
-addpath('..\..\custom_feature_package')
-addpath('..\..\shape_simulator_3D\Tools\')
 %%
 robot = robot_6DOF(0,0,0);
 %%
