@@ -1,5 +1,4 @@
 clc;clear;close all
-path_set
 %%
 load('data','xt','yt','shape_real_save','G');
 %%

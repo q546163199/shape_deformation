@@ -1,5 +1,4 @@
 clc;clear;close all
-path_set
 %%
 robot = robot_6DOF(0,0,0);
 %%

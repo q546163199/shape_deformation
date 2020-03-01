@@ -1,6 +1,0 @@
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab\algorithm\Broyden')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab\package\custom_package')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab\package\shape_simulator_3D')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab\package\shape_simulator_3D\Tools')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab\package\robot_simulator_3D\programme_modified')
-addpath('C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\matlab\algorithm\shape_representation\Fourier')
