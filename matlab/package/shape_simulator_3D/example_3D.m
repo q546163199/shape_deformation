@@ -1,6 +1,4 @@
 clc;clear;close all
-%%
-addpath('Tools')
 %% Definition of the global frame:
 global Rf Rt Re D L
 global n s0 s1 ds lx ly lz state0 state1
