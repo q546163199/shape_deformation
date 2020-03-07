@@ -1,6 +1,4 @@
-function [p_dat, PHI_dat, T_dat, param1] = shape_3D(state_init, state_end, cable_length, param0)
-addpath('/home/qjm/ShapeDeformationProj/github/shape_deformation/matlab_package/shape_simulator_3D')
-addpath('/home/qjm/ShapeDeformationProj/github/shape_deformation/matlab_package/shape_simulator_3D/Tools')
+function [p_dat, PHI_dat, T_dat, param1] = dlodynamics_3D(state_init, state_end, cable_length, param0)
 %% Definition of the global frame:
 global Rf Rt Re D L
 global n s0 s1 ds lx ly lz state0 state1
@@ -24,7 +22,6 @@ lz = state1(3) - state0(3);
 ax = state1(4) - state0(4);
 ay = state1(5) - state0(5);
 az = state1(6) - state0(6);
-
 %%
 switch nargin
     case 3
@@ -33,4 +30,3 @@ end
 %% Computation
 [param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
 [p_dat, PHI_dat, T_dat] = plotDLO(param1);
-

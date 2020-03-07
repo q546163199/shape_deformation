@@ -1,18 +1,4 @@
 clc;clear;close all
-%% Definition of the global frame:
-global Rf Rt Re D L
-global n s0 s1 ds lx ly lz state0 state1
-L = 2;
-Rf = 1;       % Flexural coefficient
-Rt = 1;       % Torsional coefficient
-Re = 0.0;     % extension coefficient
-D = 0.0;      % weight par m
-N = 50;
-s0 = 0;
-s1 = L;    
-ds = (s1 - s0)/N;
-kmax = 2;             % Use 2nd order approximation
-n = 2 * kmax + 2;     % number of parameters per varaible
 %% Constraints
 state0 = [-0.2 -0.2 0 0 0 0]; % positon and orientation of left point
 lx = 0.4;
@@ -22,17 +8,16 @@ ax = pi/4;
 ay = pi/2 + pi/8 + pi/4;
 az = pi/4;
 state1 = [state0(1)+lx state0(2)+ly state0(3)+lz state0(4)+ax state0(5)+ay state0(6)+az];
-%% Computation
-param0 = ones(4*n,1)/3.759;
-[param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
-[p_dat, PHI_dat, T_dat] = plotDLO(param1);
+param0 = zeros(4*6, 1);
+cable_length = 2;
+%%
+[p_dat, PHI_dat, T_dat, ~] = dlodynamics_3D(state0,state1,cable_length,param0);
 %%
 figure
 plot3(p_dat(:,1),p_dat(:,2),p_dat(:,3),'k-','linewidth',3);hold on
 grid on
 daspect([1 1 1])
 title('Euler Rotation is XYZ')
-%%
 T_world = eye(4);
 T_base_ur5 = [];
 T_end_ur5 = [];

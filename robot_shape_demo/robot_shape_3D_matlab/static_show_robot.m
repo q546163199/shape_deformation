@@ -18,7 +18,7 @@ state1 = [state0(1)+lx state0(2)+ly state0(3)+lz state0(4)+ax state0(5)+ay state
 param0 = zeros(24, 1);
 cable_length = 6;
 %% Computation and Fourier representation
-[p_dat, PHI_dat, T_dat, para_temp] = shape_3D(state0, state1, cable_length, param0);
+[p_dat, PHI_dat, T_dat, para_temp] = dlodynamics_3D(state0, state1, cable_length, param0);
 [s,~,shape_est_Fourier] = Fourier_curve_3D(p_dat,cable_length,8);
 %%
 figure
