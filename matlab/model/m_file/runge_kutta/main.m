@@ -1,6 +1,6 @@
 clc;clear;close all
 %%
-start = 0;step = 0.1;final = 1;
+start = 0;step = 0.01;final = 1;
 t = start:step:final;
 N = length(t) - 1;
 %%

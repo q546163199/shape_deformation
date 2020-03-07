@@ -1,6 +1,5 @@
 function [y,dy] = RK_main(x,y,h)
 
-
 x0 = x;
 y0 = y;
 
