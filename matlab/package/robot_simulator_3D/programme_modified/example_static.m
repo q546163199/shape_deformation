@@ -9,11 +9,7 @@ T(3,4) = 1;
 q = robot.ikine(T);
 angle = T2Euler(T);
 [T6,T5,T4,T3,T2,T1,T0] = robot.fkine(q(1,:));
-robot.plot(q(1,:));hold on
-grid on
+robot.plot(q(1,:));hold on;grid on
 T6 - T
 %%
-T_world = eye(4);
-T_base_ur5 = eye(4);
-T_end_ur5 = T6;
-DrawAllFrame(T_world,T_base_ur5,T_end_ur5)
+DrawAllFrame(eye(4),eye(4),T6,[],[])

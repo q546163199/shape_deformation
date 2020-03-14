@@ -13,10 +13,7 @@ for i=11:90
     robot.plot(q(1,:));hold on
     grid on
     %%
-    T_world = eye(4);
-    T_base_ur5 = eye(4);
-    T_end_ur5 = T;
-    DrawAllFrame(T_world,T_base_ur5,T_end_ur5)
+    DrawAllFrame(eye(4),eye(4),T,[],[]);hold off
     drawnow
     pause(0.1)
 end

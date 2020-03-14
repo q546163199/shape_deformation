@@ -14,7 +14,8 @@ for i=1:N
     the = sum(q) - pi;
     rad2deg(the)
     plot(traj(1:i,1),traj(1:i,2),'k--','linewidth',1.5);hold on
-    robot.plot(q);hold off
+    robot.plot(q);hold on
+    Draw2DFrame(q, p3, 0.5, 1)
     axis([-2 2 -2 2])
     grid on
     drawnow

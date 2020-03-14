@@ -1,6 +1,5 @@
 function Draw2DFrame(q, p2, s, lw)
 
-
 % s: scale factor
 % lw: line width
 x = p2.x;
