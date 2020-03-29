@@ -3,11 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import sys
-sys.path.append('/home/qjm/ShapeDeformationProj/GIthub/shape_deformation/python_package/custom_package')
+sys.path.append('../custom_package')
 from user_define import DrawAllFrame, Euler2T
 
-class robot_UR5:
 
+class robot_UR5:
     d1 = 89.2 / 1000
     d4 = 109.3 / 1000
     d5 = 94.75 / 1000
@@ -77,7 +77,6 @@ class robot_UR5:
         T6 = np.matmul(T5, A6)
 
         return T6, T5, T4, T3, T2, T1, T0
-
 
     def ikine(self, T):
         a = np.array([0, self.a2, self.a3, 0, 0, 0])
@@ -153,7 +152,6 @@ class robot_UR5:
                                  (ox * np.cos(theta[:, 0]) + oy * np.sin(theta[:, 0])), oz * np.cos(theta[:, 5]) + nz * np.sin(theta[:, 5])) - theta[:, 1] - theta[:, 2]
 
         return np.array(theta)
-
 
     def plot(self, q):
         T6, T5, T4, T3, T2, T1, T0 = self.fkine(q)

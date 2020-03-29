@@ -14,6 +14,6 @@ options = optimset('LargeScale','off','display','iter');
 [x,fval] = fmincon(@(x)fun(x,1),x0,A,b,Aeq,beq,lb,ub,@nlinconfun,options);
 %%
 function[c,ceq] = nlinconfun(x)
-c = 1.5-x(1)*x(2);
-ceq = x(1)^2+x(2)^2-3;
+c = 1.5 - x(1)*x(2);
+ceq = x(1)^2 + x(2)^2 - 3;
 end

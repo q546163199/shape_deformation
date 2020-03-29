@@ -19,26 +19,25 @@ def Rk_main(x, y, h):
     return y, dy
 
 
-## test code
-start = 0; final = 1; h = 0.1
-N = int((final - start) / h)
-t = np.linspace(start, final, num=N, endpoint=False)
-print(t)
-x = np.zeros([N+1, 1])
-x[0] = 0
-y = np.zeros([N+1, 1])
-y[0] = 1
-dy = np.zeros([N+1, 1])
-dy[0] = 0
+if __name__ == '__main__':
+    ## test code
+    start = 0
+    final = 1
+    h = 0.1
+    N = int((final - start) / h)
+    t = np.linspace(start, final, num=N, endpoint=False)
+    print(t)
+    x = np.zeros([N + 1, 1])
+    x[0] = 0
+    y = np.zeros([N + 1, 1])
+    y[0] = 1
+    dy = np.zeros([N + 1, 1])
+    dy[0] = 0
 
-for i in range(N):
-    y[i+1], dy[i+1] = Rk_main(x[i], y[i], h)
-    x[i+1] = x[i] + h
+    for i in range(N):
+        y[i + 1], dy[i + 1] = Rk_main(x[i], y[i], h)
+        x[i + 1] = x[i] + h
 
-plt.figure()
-plt.plot(x, y, 'r-', marker='*')
-plt.show()
-
-
-
-
+    plt.figure()
+    plt.plot(x, y, 'r-', marker='*')
+    plt.show()

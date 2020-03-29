@@ -13,11 +13,11 @@ cable_length = 2;
 %%
 [p_dat, PHI_dat, T_dat, ~] = dlodynamics_3D(state0,state1,cable_length,param0);
 %%
-modified = point_cloud_fill(p_dat,150,0.025,3);
+modified = point_cloud_fill(p_dat,150,0.025,2.2);
 figure
 plot3(modified(:,1),modified(:,2),modified(:,3),'k.','linewidth',1);hold on
 grid on
 daspect([1 1 1])
 title('Euler Rotation is XYZ')
 DrawAllFrame(eye(4),[],[],T_dat(1:4,(1*4-3):(1*4)),T_dat(1:4,(51*4-3):(51*4)))
-save data modified
+save pcd_3D modified
