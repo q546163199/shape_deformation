@@ -19,5 +19,5 @@ plot3(modified(:,1),modified(:,2),modified(:,3),'k.','linewidth',1);hold on
 grid on
 daspect([1 1 1])
 title('Euler Rotation is XYZ')
-DrawAllFrame(eye(4),[],[],T_dat(1:4,(1*4-3):(1*4)),T_dat(1:4,(51*4-3):(51*4)))
+DrawAllFrame(eye(4),[],[],T_dat(1:4,(1*4-3):(1*4)),T_dat(1:4,(101*4-3):(101*4)))
 save pcd_3D modified

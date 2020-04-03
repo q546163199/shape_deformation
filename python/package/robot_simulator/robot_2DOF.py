@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+from timeit import default_timer as timer
 
 ## elbow_up = 1
 ## elbow_down = 2
@@ -89,6 +90,7 @@ class robot_2DOF:
 
 
 if __name__ == '__main__':
+    tic = timer()
     length = [1, 1]
     bias = [0.2, 0.3]
     robot = robot_2DOF('robot', length, bias, 2)
@@ -115,6 +117,9 @@ if __name__ == '__main__':
         ##
         rad = q.sum() - np.pi
         print(np.rad2deg(rad), '  ', robot.fkine(q))
+
+    toc = timer()
+    print(toc - tic)
 
 
 

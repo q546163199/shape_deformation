@@ -24,6 +24,7 @@ cable_length = 6;
 figure
 q = robot.ikine(T);
 robot.plot(q(1,:));hold on
+% set(gcf,'windowButtonDownFcn',@robot.WindowButtonDownFcn);
 plot3(p_dat(:,1),p_dat(:,2),p_dat(:,3),'k-','linewidth',2);hold on
 plot3(shape_est_Fourier(:,1),shape_est_Fourier(:,2),shape_est_Fourier(:,3),'r-.','linewidth',2);hold on
 grid on

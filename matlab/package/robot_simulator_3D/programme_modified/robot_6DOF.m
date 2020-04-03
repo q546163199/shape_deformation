@@ -209,6 +209,17 @@ classdef robot_6DOF
             end
         end
         
+        function WindowButtonDownFcn(obj,src,event)
+            if strcmp(get(gcf,'SelectionType'),'alt')  % 此时即为右键
+            elseif strcmp(get(gcf,'SelectionType'),'normal')  % 此时即为左键
+                pt = get(gca,'CurrentPoint');
+                x = pt(1,1);
+                y = pt(1,2);
+                z = pt(1,3);
+                fprintf('x= %f,y= %f,z= %f\n',x,y,z); 
+            end
+        end
+        
     end
 end
 

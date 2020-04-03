@@ -279,5 +279,5 @@ def example_dynamic():
 
 if __name__ == '__main__':
     # example()
-    # example_circle()
-    example_dynamic()
+    example_circle()
+    # example_dynamic()

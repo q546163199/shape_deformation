@@ -75,6 +75,7 @@ if mode_select == 2.2
         end
     end
 end
+modified(1:total_num,:) = [];
 %%
 if mode_select ~= 1.1 && mode_select ~= 1.2 && mode_select ~= 2.1 && mode_select ~= 2.2
     fprintf('Mode wrong, please try again\n')
