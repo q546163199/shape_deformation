@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 from mpl_toolkits.mplot3d import Axes3D
 import sys
-sys.path.append("../custom_package")
+sys.path.append("../custom_algorithm")
 # sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator')
 from user_define import Euler2T, T2Euler, DrawAllFrame
 #

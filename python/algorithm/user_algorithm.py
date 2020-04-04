@@ -1,9 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import sys
-import math
 
-from mpl_toolkits.mplot3d import Axes3D
 
 def Euler2T(angle):
     x = angle[0]
@@ -26,6 +22,7 @@ def Euler2T(angle):
 
     T = np.matmul(np.matmul(Rz, Ry), Rx)
     return T
+
 
 def T2Euler(T):
     x = np.arctan2(T[2, 1], T[2, 2])
@@ -126,10 +123,9 @@ def DrawAllFrame(*args):
 if __name__ == '__main__':
     angle = np.array([0.31, 0.52, 1.3])
     quad = Euler2Quad(angle)
-    quad1 = np.array([-0.99114048481, -0.00530699081719, 0.00178255140781, -0.133612662554])
     angle1 = Quqd2Euler(quad)
-    print(angle1)
-    print(np.rad2deg(Quqd2Euler(quad1)))
+    print(angle1 - angle)
+
 
 
 

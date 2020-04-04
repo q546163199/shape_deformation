@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import sys
-sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/custom_package')
+sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/custom_algorithm')
 from user_define import DrawAllFrame
 
 p_data = np.loadtxt(r'/home/qjm/ShapeDeformationProj/github/shape_deformation/robot_shape_demo/robot_shape_3D_python/datafile/p_data.txt')
