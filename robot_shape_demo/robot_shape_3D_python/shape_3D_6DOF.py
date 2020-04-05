@@ -29,7 +29,7 @@ state0 = state0.tolist()
 cable_length = np.float(6)
 para = np.zeros([24, 1]).tolist()
 ##
-[p_data, phi_data, T_data, para_temp] = eng.shape_3D(matlab.double(state0), matlab.double(state1), cable_length, matlab.double(para), nargout = 4)
+[p_data, phi_data, T_data, para_temp] = eng.dlodynamics_3D(matlab.double(state0), matlab.double(state1), cable_length, matlab.double(para), nargout = 4)
 para = para_temp
 ##
 p_data = np.array(p_data)

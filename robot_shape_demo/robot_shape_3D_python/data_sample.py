@@ -38,7 +38,7 @@ for i in range(number):
     state1 = (state0 + np.array([lx, ly, lz, ax, ay, az])).tolist()
     state0 = list(state0)
 
-    [p_data, phi_data, T_data, para_temp] = eng.shape_3D(matlab.double(state0), matlab.double(state1), cable_length, matlab.double(para), nargout = 4)
+    [p_data, phi_data, T_data, para_temp] = eng.dlodynamics_3D(matlab.double(state0), matlab.double(state1), cable_length, matlab.double(para), nargout=4)
     para = para_temp
     p_data = np.array(p_data)
     phi_data = np.array(phi_data)
