@@ -11,7 +11,7 @@ if ~isempty(T_base_ur5)
 end
 
 if ~isempty(T_end_ur5)
-    DrawFrame(T_end_ur5,0.5,2);hold on
+    DrawFrame(T_end_ur5,1,1);hold on
     text(T_end_ur5(1,4),T_end_ur5(2,4),T_end_ur5(3,4)-0.1,'','fontsize',12)
 end
 
@@ -21,7 +21,7 @@ if ~isempty(T_base_shape)
 end   
       
 if ~isempty(T_end_shape)
-    DrawFrame(T_end_shape,0.5,2);hold on
+    DrawFrame(T_end_shape,0.5,1);hold on
     text(T_end_shape(1,4),T_end_shape(2,4),T_end_shape(3,4)-0.1,'','fontsize',12)
 end
 end
