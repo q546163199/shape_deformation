@@ -1,4 +1,5 @@
 clc;clear;close all
+tic
 %% Constraints
 state0 = [-0.2 -0.2 0 0 0 0]; % positon and orientation of left point
 lx = 0.4;
@@ -22,5 +23,6 @@ T_world = eye(4);
 T_base_ur5 = [];
 T_end_ur5 = [];
 T_base_shape = T_dat(1:4,(1*4-3):(1*4));
-T_end_shape = T_dat(1:4,(51*4-3):(51*4));
+T_end_shape = T_dat(1:4,(size(p_dat,1)*4-3):(size(p_dat,1)*4));
 DrawAllFrame(T_world,T_base_ur5,T_end_ur5,T_base_shape,T_end_shape)
+toc

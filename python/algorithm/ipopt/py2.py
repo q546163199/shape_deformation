@@ -1,3 +1,5 @@
+from scipy.optimize import rosen, rosen_der
+from ipopt import minimize_ipopt
 import numpy as np
 import scipy.optimize as opt
 import time
@@ -25,9 +27,9 @@ def func(K):
     return f
 
 
-K0 = np.random.rand(10, 8)
-res = opt.minimize(func, K0, method='BFGS', options={'disp': True, 'maxiter': 50})
-
+K0 = np.random.rand(80, 1)
+# res = opt.minimize(func, K0, method='BFGS', options={'disp': True, 'maxiter': 30})
+res = minimize_ipopt(func, K0, method='BFGS', options={'maxiter': 20})
 print(res.x.shape)
 print(A - res.x.reshape(10, 8))
 end = time.time()

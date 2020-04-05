@@ -27,6 +27,7 @@ switch nargin
     case 3
         param0 = zeros(4*n, 1);
 end
+% costfun(param0)
 %% Computation
 [param1, cost] = fmincon(@costfun,param0,[],[],[],[],[],[],@nonlinc);
 [p_dat, PHI_dat, T_dat] = plotDLO(param1);
