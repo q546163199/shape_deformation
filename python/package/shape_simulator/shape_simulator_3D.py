@@ -301,8 +301,4 @@ if __name__ == '__main__':
     end = time.time()
     print(end - start)
     plt.pause(100)
-
-
-
-
-
+    

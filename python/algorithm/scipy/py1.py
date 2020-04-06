@@ -25,4 +25,3 @@ cons = [con1, con2]
 x0 = np.array([0.5, 0])
 res = opt.minimize(func, x0, method='SLSQP', constraints=cons, options={'disp': True})
 print(res.x)
-
