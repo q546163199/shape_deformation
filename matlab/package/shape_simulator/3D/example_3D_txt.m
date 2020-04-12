@@ -1,4 +1,5 @@
 clc;clear;close all
+tic
 %% Constraints
 state0 = [0.45672169 -0.25137791  0.83653642  0.35574022 -1.56994948 -1.92758319];
 state1 = [0.45670461  0.25185566  0.83623001 -0.79692865 -1.56965789  2.36667874];
@@ -19,3 +20,4 @@ for i=1:2
     filename=['pcd_3D_',num2str(i),'.txt'];
     save(filename, 'modified', '-ascii')
 end
+toc

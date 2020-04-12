@@ -15,7 +15,7 @@ cable_length = 2;
 [p_dat, PHI_dat, T_dat, ~] = dlodynamics_3D(state0,state1,cable_length,param0);
 %%
 figure
-plot3(p_dat(:,1),p_dat(:,2),p_dat(:,3),'k-','linewidth',3);hold on
+plot3(p_dat(:,1),p_dat(:,2),p_dat(:,3),'k.','linewidth',3);hold on
 grid on
 daspect([1 1 1])
 title('Euler Rotation is XYZ')
