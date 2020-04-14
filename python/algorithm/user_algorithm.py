@@ -121,12 +121,14 @@ def DrawAllFrame(*args):
 
 
 if __name__ == '__main__':
-    angle = np.array([0.31, 0.52, 1.3])
-    quad = Euler2Quad(angle)
-    angle1 = Quqd2Euler(quad)
-    print(angle1 - angle)
-
-
+    # angle = np.array([0.31, 0.52, 1.3])
+    # quad = Euler2Quad(angle)
+    # angle1 = Quqd2Euler(quad)
+    # print(angle1 - angle)
+    quad = np.array([0.38761206, -0.40450459, 0.59807436, 0.57309684])
+    euler = Quqd2Euler(quad)
+    T = Euler2T(euler)
+    print(T)
 
 
 
