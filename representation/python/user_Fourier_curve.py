@@ -1,9 +1,6 @@
 import numpy as np
 from numpy.linalg import inv
 import matplotlib.pyplot as plt
-import sys
-import math
-from mpl_toolkits.mplot3d import Axes3D
 
 
 def Fourier_curve_2D(shape, length, N):
@@ -14,7 +11,7 @@ def Fourier_curve_2D(shape, length, N):
     F_temp = np.empty(shape=[2, 4])
     G = np.empty(shape=[0, P])
     rho = np.zeros([L, 1])
-    shape_Fourier = np.zeros((shape.shape))
+    shape_Fourier = np.zeros(shape.shape)
 
     ## calculate c
     for i in range(L):
@@ -54,7 +51,7 @@ def Fourier_curve_3D(shape, length, N):
     F_temp = np.empty(shape=[3, 6])
     G = np.empty(shape=[0, P])
     rho = np.zeros([L, 1])
-    shape_Fourier = np.zeros((shape.shape))
+    shape_Fourier = np.zeros(shape.shape)
 
     # calculate c
     for i in range(L):
@@ -90,12 +87,12 @@ def Fourier_curve_3D(shape, length, N):
 
 # test code
 if __name__ == '__main__':
-    shape = np.loadtxt('p_data')
-    s, G, shape_Fourier = Fourier_curve_3D(shape, 6, 20)
-    print(np.linalg.norm(shape - shape_Fourier, ord=2))
+    origin = np.loadtxt('p_data')
+    shape_Fourier = Fourier_curve_3D(origin, 6, 20)[2]
+    print(np.linalg.norm(origin - shape_Fourier, ord=2))
     plt.ion()
     plt.show()
     ax = plt.axes(projection='3d')
-    ax.plot(shape[:, 0], shape[:, 1], shape[:, 2])
+    ax.plot(origin[:, 0], origin[:, 1], origin[:, 2])
     ax.plot(shape_Fourier[:, 0], shape_Fourier[:, 1], shape_Fourier[:, 2])
     plt.pause(5)

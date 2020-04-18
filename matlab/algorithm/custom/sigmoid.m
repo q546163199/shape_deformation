@@ -6,5 +6,4 @@ switch condition
     case 2
         y = (1-exp(-x))./(1+exp(-x));
 end
-
 end
