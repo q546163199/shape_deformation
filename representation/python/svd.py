@@ -31,7 +31,7 @@ def cv_imread(file_path=""):
 
 
 if __name__ == "__main__":
-    img = cv_imread(r'C:\Users\q5461\OneDrive\文档\GitHub\shape_deformation\representation\python\data\pic1.jpeg')
+    img = cv_imread(r'D:\GitHub\shape_deformation\representation\python\data\pic1.jpeg')
 
     U, Sigma, VT, img_restruct1 = svd_decrease(img, sval_nums=60)
     U, Sigma, VT, img_restruct2 = svd_decrease(img, sval_nums=120)
