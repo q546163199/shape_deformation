@@ -3,7 +3,7 @@ clc;clear;close all
 [x,fval] = fmincon(@fun,rand(3,1),[],[],[],[],zeros(3,1),[],@nonlin);
 %%
 function f = fun(x)
-f = x(1).^2 + x(2).^2 + x(3).^2 +8;
+f = x(1).^2 + x(2).^2 + x(3).^2 + 8;
 end
 %%
 function [c,ceq] = nonlin(x)

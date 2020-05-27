@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 (target_x, target_y) = (1, 1)  # 机器人要到达的目标点
 mouse_operation_flag = False
 
+
 class TwoLinkArm:
     """
     两连杆手臂模拟。
@@ -86,7 +87,7 @@ class TwoLinkArm:
         _joint_angles = self.inverse_kinematic(x, y)
 
         # 将这个角度变化过程分解成一个1s内的执行15步的慢动作
-        duration_time_seconds = 1
+        duration_time_seconds = 0.001
         actions_num = 15
         angles_per_action = (np.array(_joint_angles) - np.array(self.joint_angles)) / actions_num
         plt.ion()  # 开启交互模式不然没有动画效果
@@ -126,6 +127,3 @@ if __name__ == "__main__":
 
     plt.ioff()  # 一定要终止交互模式不然会一闪而过
     plt.show()
-
-
-
