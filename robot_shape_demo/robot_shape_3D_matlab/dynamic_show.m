@@ -34,7 +34,7 @@ param0 = zeros(4*n,1);
 [shape_target, PHI_dat, T_dat] = plotDLO(param1);
 [y_target,G,~] = Fourier_curve_3D(shape_target,L,6);
 %% init shape
-q_init = xt(33,:);
+q_init = xt(32,:);
 q_real = q_init;
 %% start move
 lambda = 0.1;

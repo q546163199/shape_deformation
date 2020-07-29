@@ -11,7 +11,7 @@ cable_length = 2;
 tic
 shape1 = dlodynamics_2D(xleft, yleft, xright, yright,Theta1, Theta2, cable_length);
 plot(shape1(:, 1), shape1(:, 2),'ok--','linewidth',1,'Markersize',5,'MarkerEdgeColor', 'k','MarkerFaceColor', [254, 67, 101]/255);
-hold on
+hold on;grid on
 toc
 %%
 tic

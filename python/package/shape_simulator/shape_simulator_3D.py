@@ -2,11 +2,11 @@ import scipy.optimize as opt
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-from mpl_toolkits.mplot3d import Axes3D
 import sys
-sys.path.append("../../algorithm")
+# sys.path.append("../../algorithm")
 # sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator')
 from user_algorithm import Euler2T, T2Euler, DrawAllFrame
+from mpl_toolkits.mplot3d import Axes3D
 
 #
 L = 2
@@ -301,4 +301,3 @@ if __name__ == '__main__':
     end = time.time()
     print(end - start)
     plt.pause(100)
-    
