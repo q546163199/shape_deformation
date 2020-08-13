@@ -41,5 +41,4 @@ for k = 1 : numOfData
     DLOangle = [DLOangle; phi];
 end
 dloData = DLO;
-
 end
