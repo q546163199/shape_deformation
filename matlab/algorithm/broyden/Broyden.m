@@ -1,44 +1,46 @@
-function [At,ut,dt] = Broyden(xt,yt,gamma,choice)
+function [At,dx,dy] = Broyden(x,y,gamma,choice)
 %% 
-N = size(xt,1);
+N = size(x,1);
 %%
-ut = diff(xt);
-ut = [zeros(1,size(xt,2)) + 0.01;ut];
-dt = diff(yt);
-dt = [zeros(1,size(yt,2)) + 0.01;dt];
-At0 = rand(size(yt,2),size(xt,2));
+dx = diff(x);
+dx = [zeros(1,size(x,2)) + 0.01;dx];
+dy = diff(y);
+dy = [zeros(1,size(y,2)) + 0.01;dy];
+At0 = rand(size(y,2),size(x,2));
 %%
 switch choice
     case 1
-        %% NORMAL       
+        %% R1       
         for i=1:N
-            At = At0 + gamma * (dt(i,:)' - At0 * ut(i,:)') * ut(i,:)/(ut(i,:) * ut(i,:)');
+            At = At0 + gamma * (dy(i,:)' - At0 * dx(i,:)') * dx(i,:)/(dx(i,:) * dx(i,:)');
             At0 = At;
         end
     case 2
         %% SR1
         for i=1:N
-            At = At0 + (dt(i,:)' - At0 * ut(i,:)') * (dt(i,:)' - At0 * ut(i,:)')' *...
-                 pinv(ut(i,:)' * (dt(i,:)' - At0 * ut(i,:)')');
+            At = At0 + (dy(i,:)' - At0 * dx(i,:)') * (dy(i,:)' - At0 * dx(i,:)')' *...
+                 pinv(dx(i,:)' * (dy(i,:)' - At0 * dx(i,:)')');
             At0 = At;
         end
     case 3
         %% BFGS
         for i=1:N
-            At = At0 - At0 * ut(i,:)' * ut(i,:) * At0' * pinv(ut(i,:)' * ut(i,:) * At0') + dt(i,:)' * dt(i,:) * pinv(ut(i,:)' * dt(i,:));
+            At = At0 - At0 * dx(i,:)' * dx(i,:) * At0' * pinv(dx(i,:)' * dx(i,:) * At0') + dy(i,:)' * dy(i,:) * pinv(dx(i,:)' * dy(i,:));
             At0 = At;
         end
     case 4
         %% DFP
         for i=1:N
-            At = At0 + ((dt(i,:)' - At0 * ut(i,:)')*dt(i,:) + dt(i,:)' * (dt(i,:)' - At0 * ut(i,:)')') * pinv(ut(i,:)' * dt(i,:))...
-                 - ((dt(i,:)' - At0 * ut(i,:)') * ut(i,:)) * (dt(i,:) * dt(i,:)') / norm(ut(i,:)' * dt(i,:));
+            At = At0 + ((dy(i,:)' - At0 * dx(i,:)')*dy(i,:) + dy(i,:)' * (dy(i,:)' - At0 * dx(i,:)')') * pinv(dx(i,:)' * dy(i,:))...
+                 - ((dy(i,:)' - At0 * dx(i,:)') * dx(i,:)) * (dy(i,:) * dy(i,:)') / (norm(dx(i,:)' * dy(i,:)) + 0.01);
+            At0 = At;
         end
     case 5
         %% PSB
         for i=1:N
-            At = At0 + ((dt(i,:)' - At0 * ut(i,:)')*ut(i,:) * 2) / (ut(i,:) * ut(i,:)')...
-                - ((dt(i,:)' - At0 * ut(i,:)') * ut(i,:) * ut(i,:)' * ut(i,:)) / (ut(i,:) * ut(i,:)');
+            At = At0 + ((dy(i,:)' - At0 * dx(i,:)')*dx(i,:) * 1) / (dx(i,:) * dx(i,:)')...
+                - ((dy(i,:)' - At0 * dx(i,:)') * dx(i,:) * dx(i,:)' * dx(i,:)) / (dx(i,:) * dx(i,:)');
+            At0 = At;
         end
         
 end

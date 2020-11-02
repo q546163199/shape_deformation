@@ -1,4 +1,4 @@
-function f = fun(a)
+function f = cable_cost(a)
 % Opimization function
 global L n
 

@@ -6,6 +6,7 @@ from timeit import default_timer as timer
 ## elbow_up = 1
 ## elbow_down = 2
 
+
 class robot_2DOF:
     def __init__(self, name, length, bias, elbow_case):
         self.name = name
@@ -83,10 +84,10 @@ class robot_2DOF:
 
         plt.cla()
         plt.plot([self.biasx, p1x, p2x], [self.biasy, p1y, p2y], color='black', linestyle='-', lw=2, marker='*')
-        axis_limit = l1 + l2 + max(self.biasx, self.biasy)
+        # axis_limit = l1 + l2 + max(self.biasx, self.biasy)
         plt.axis('square')
-        plt.xlim((-0.2, axis_limit))
-        plt.ylim((-0.2, axis_limit))
+        plt.xlim([-0.3, 1.1])
+        plt.ylim([-0.3, 1.1])
 
 
 if __name__ == '__main__':

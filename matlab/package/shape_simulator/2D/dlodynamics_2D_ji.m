@@ -25,7 +25,7 @@ switch nargin
        init = zeros(2 * 4 +2, 1);
 end
 %-------------------
-% addpatth('/home/qjm/ShapeDeformationProj')
+addpath('D:\GitHub\material\casadi')
 import casadi.*
 % DLO modeling
 n = 4;  % use 4th order approximation
