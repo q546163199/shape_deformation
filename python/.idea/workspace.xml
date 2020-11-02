@@ -29,7 +29,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="D:/Doctor/vision-based finite/simullation" />
+    <property name="last_opened_file_path" value="D:/Doctor/shape_deformation_AutoEncoder/simulation" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -37,29 +37,8 @@
       <recent name="D:\GitHub\shape_deformation\python\package\shape_simulator\2D" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_net">
-    <configuration name="py1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/scipy" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/scipy/py1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test_net" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.dlodynamics_2D">
+    <configuration name="dlodynamics_2D" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -71,7 +50,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/package/shape_simulator/2D/test_net.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/package/shape_simulator/2D/dlodynamics_2D.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -80,7 +59,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_net" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dlodynamics_3D (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -88,11 +67,74 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/package/shape_simulator/2D" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/package/shape_simulator/3D" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/package/shape_simulator/2D/train_net.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/package/shape_simulator/3D/dlodynamics_3D.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dlodynamics_3D" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/package/shape_simulator/3D" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\GitHub\shape_deformation\python\package\shape_simulator\3D\dlodynamics_3D.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="noe" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/package/shape_simulator/3D" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/package/shape_simulator/3D/noe.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="shape_simulator_3D_ipopt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/package/shape_simulator/3D" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/package/shape_simulator/3D/shape_simulator_3D_ipopt.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -103,8 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_net" />
-        <item itemvalue="Python.train_net" />
+        <item itemvalue="Python.dlodynamics_2D" />
+        <item itemvalue="Python.dlodynamics_3D (1)" />
+        <item itemvalue="Python.dlodynamics_3D" />
+        <item itemvalue="Python.shape_simulator_3D_ipopt" />
+        <item itemvalue="Python.noe" />
       </list>
     </recent_temporary>
   </component>
@@ -126,25 +171,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/-1920.0.1536.824@0.0.1536.824" timestamp="1601341368070" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601348107620">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="-1371" y="167" key="FileChooserDialogImpl" timestamp="1604285069342">
+      <screen x="-1920" y="0" width="1536" height="824" />
     </state>
+    <state x="-1371" y="167" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1536.824@-1920.0.1536.824" timestamp="1604285069342" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1536.824@0.0.1536.824" timestamp="1601348107620" />
-    <state width="1515" height="139" key="GridCell.Tab.0.bottom" timestamp="1601347983223">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="139" key="GridCell.Tab.0.bottom" timestamp="1604285070247">
+      <screen x="-1920" y="0" width="1536" height="824" />
     </state>
+    <state width="1515" height="139" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1536.824@-1920.0.1536.824" timestamp="1604285070247" />
     <state width="1515" height="139" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1536.824@0.0.1536.824" timestamp="1601347983223" />
-    <state width="1515" height="139" key="GridCell.Tab.0.center" timestamp="1601347983223">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="139" key="GridCell.Tab.0.center" timestamp="1604285070247">
+      <screen x="-1920" y="0" width="1536" height="824" />
     </state>
+    <state width="1515" height="139" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1536.824@-1920.0.1536.824" timestamp="1604285070247" />
     <state width="1515" height="139" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1536.824@0.0.1536.824" timestamp="1601347983223" />
-    <state width="1515" height="139" key="GridCell.Tab.0.left" timestamp="1601347983223">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="139" key="GridCell.Tab.0.left" timestamp="1604285070247">
+      <screen x="-1920" y="0" width="1536" height="824" />
     </state>
+    <state width="1515" height="139" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1536.824@-1920.0.1536.824" timestamp="1604285070247" />
     <state width="1515" height="139" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1536.824@0.0.1536.824" timestamp="1601347983223" />
-    <state width="1515" height="139" key="GridCell.Tab.0.right" timestamp="1601347983223">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="139" key="GridCell.Tab.0.right" timestamp="1604285070247">
+      <screen x="-1920" y="0" width="1536" height="824" />
     </state>
+    <state width="1515" height="139" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1536.824@-1920.0.1536.824" timestamp="1604285070247" />
     <state width="1515" height="139" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1536.824@0.0.1536.824" timestamp="1601347983223" />
     <state width="1515" height="163" key="GridCell.Tab.1.bottom" timestamp="1601347983220">
       <screen x="0" y="0" width="1536" height="824" />
@@ -170,6 +220,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824/-1920.0.1536.824@0.0.1536.824" timestamp="1601341967662" />
+    <state x="-1489" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604284086071">
+      <screen x="-1920" y="0" width="1536" height="824" />
+    </state>
+    <state x="-1489" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/-1920.0.1536.824@-1920.0.1536.824" timestamp="1604284086071" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

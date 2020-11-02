@@ -15,11 +15,9 @@ Theta1 = 0.0
 Theta2 = 0.0
 
 
-def dlodynamics_2D(x1, y1, x2, y2, langle, rangle, cable_length, init=np.zeros((2 * 4 + 2, 1))):
+def dlodynamics_2D(x1, y1, x2, y2, langle, rangle, cable_length, init=np.ones((1, 2 * 4 + 2)) / 10):
     global L, n, N, Lx, Ly, Theta1, Theta2
     L = cable_length
-    n = 4
-    N = 100
     Lx = x2 - x1
     Ly = y2 - y1
     Theta1 = langle
@@ -28,8 +26,7 @@ def dlodynamics_2D(x1, y1, x2, y2, langle, rangle, cable_length, init=np.zeros((
     con1 = {'type': 'eq', 'fun': constraint_eq}
     con2 = {'type': 'ineq', 'fun': constraint_ineq}
     cons = [con1]
-    x0 = np.ones((1, 2 * 4 + 2)) / 10
-    res = opt.minimize(cable_cost, x0, method='SLSQP', constraints=cons, options={'disp': False})
+    res = opt.minimize(cable_cost, init, method='SLSQP', constraints=cons, options={'disp': False})
 
     para_a = res.x
     px = x1
@@ -48,7 +45,7 @@ def dlodynamics_2D(x1, y1, x2, y2, langle, rangle, cable_length, init=np.zeros((
         DLOangle = np.vstack((DLOangle, phi))
 
     dloData = DLO
-    return dloData
+    return dloData, para_a
 
 
 def cable_cost(a):
@@ -94,14 +91,13 @@ def constraint_ineq(x):
 
 if __name__ == '__main__':
     tic = time()
-    shape = dlodynamics_2D(0.0, 0.0, 0.7, 0.0, np.pi/6, -np.pi/6, 1.0)
-    plt.xlim([-0.1, 1.4])
-    plt.ylim([-0.1, 1.4])
-    plt.plot(shape[:, 0], shape[:, 1])
+    para0 = np.ones((1, 2 * 4 + 2)) / 10
+    shape, para1 = dlodynamics_2D(0.0, 0.0, 0.7, 0.0, np.pi/6, -np.pi/6, 1.0, para0)
+    plt.xlim([-0.1, 0.8])
+    plt.ylim([-0.1, 0.8])
+    plt.scatter(shape[:, 0], shape[:, 1])
+    plt.axis('square')
     plt.grid()
-    # for i in range(20, 40):
-    #     print(i)
-    # toc = time()
-    print(toc - tic)
+    print(time() - tic)
     plt.pause(0)
 

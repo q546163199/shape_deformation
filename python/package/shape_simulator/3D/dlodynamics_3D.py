@@ -1,41 +1,54 @@
 import scipy.optimize as opt
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 import sys
-from casadi import *
 from mpl_toolkits.mplot3d import Axes3D
-sys.path.append("../../algorithm")
-# sys.path.append('/home/qjm/ShapeDeformationProj/github/shape_deformation/python_package/robot_simulator')
-from user_algorithm import Euler2T, T2Euler, DrawAllFrame
+from time import time
 
-#
 L = 2
-Rf = 1       # Flexural coefficient
-Rt = 1       # Torsional coefficient
-Re = 0.0     # extension coefficient
-D = 0.0      # weight par m
-N = 50
+Rf = 1  # Flexural coefficient
+Rt = 1  # Torsional coefficient
+Re = 0.0  # extension coefficient
+D = 0.0  # weight par m
+N = 20
 s0 = 0
 s1 = L
 ds = (s1 - s0) / N
-kmax = 2             # Use 2nd order approximation
-n = 2 * kmax + 2     # number of parameters per varaible
-#
-state0 = np.array([-0.2, -0.2, 0, 0, 0, 0])
-lx = 0.4
-ly = 0.4
-lz = -0.3
-ax = np.pi / 4
-ay = np.pi / 2 + np.pi / 8 + np.pi / 4
-az = np.pi / 4
-state1 = (state0 + np.array([lx, ly, lz, ax, ay, az]))
+kmax = 2
+n = 2 * kmax + 2
 
 
-#
+def dlodynamics_3D(state_init, state_end, cable_length, init):
+    global L, Rf, Rt, Re, D, N, s0, s1, ds, lx, ly, lz, state0, state1, n
+
+    L = cable_length
+
+    lx = state1[0] - state0[0]
+    ly = state1[1] - state0[1]
+    lz = state1[2] - state0[2]
+    ax = state1[3] - state0[3]
+    ay = state1[4] - state0[4]
+    az = state1[5] - state0[5]
+
+    state0 = state_init
+    state1 = state_end
+
+    param0 = init
+    con1 = {'type': 'ineq', 'fun': constraint_ineq}
+    con2 = {'type': 'eq', 'fun': constraint_eq}
+    cons = [con2]
+
+    res = opt.minimize(costfun, param0, method='SLSQP', constraints=cons, options={'disp': True})
+    para1 = res.x
+
+    [p_dat, PHI_dat, T_dat] = plotDLO(para1)
+
+    return p_dat, para1
+
+
 def f_evaluate(s, a, f0):
+    global L, n
     e = np.arange(n, dtype=np.float)
-    # e = SX.sym('e', 6)
     e[0] = 1
     e[1] = s
     for i in range(3, n+1):
@@ -54,8 +67,8 @@ def f_evaluate(s, a, f0):
 
 
 def f_derivate(s, a):
+    global L, n
     e = np.arange(n, dtype=np.float)
-    # e = SX.sym('e', 6)
     e[0] = 0
     e[1] = 1
     for i in range(3, n+1):
@@ -74,13 +87,11 @@ def f_derivate(s, a):
 
 
 def CalcPosition(s, param):
-    # param = param.reshape(1, -1)
-    # a_phi = param[0, 0:n]
-    # a_theta = param[0, n + 0:2 * n]
-    # a_epsilon = param[0, 3 * n + 0:4 * n]
-    a_phi = param[0:n, 0]
-    a_theta = param[n + 0:2 * n, 0]
-    a_epsilon = param[3 * n + 0:4 * n, 0]
+    global n, s0, ds, state0, Re
+    param = param.reshape(1, -1)
+    a_phi = param[0, 0:n]
+    a_theta = param[0, n + 0:2 * n]
+    a_epsilon = param[0, 3 * n + 0:4 * n]
     p = np.array([[state0[0]],
                   [state0[1]],
                   [state0[2]]])
@@ -102,10 +113,11 @@ def CalcPosition(s, param):
 
 
 def CalcOrientation(s, param):
-    # param = param.reshape(1, -1)
-    a_phi = param[0:n, 0]
-    a_theta = param[n + 0:2 * n, 0]
-    a_psi = param[2 * n + 0:3 * n, 0]
+    global n, state0
+    param = param.reshape(1, -1)
+    a_phi = param[0, 0:n]
+    a_theta = param[0, n + 0:2 * n]
+    a_psi = param[0, 2 * n + 0:3 * n]
     phi = f_evaluate(s, a_phi, state0[3])
     theta = f_evaluate(s, a_theta, state0[4])
     psi = f_evaluate(s, a_psi, state0[5])
@@ -138,7 +150,8 @@ def RotAxeAngle(axe, angle):
 
 
 def costfun(param):
-    # param = param.reshape(1, -1)
+    global n, s0, s1, ds, Rf, Rt, Re, D, state0, N
+    param = param.reshape(1, -1)
     Uflex = 0
     Utor = 0.0
     Uext = 0.0
@@ -147,8 +160,8 @@ def costfun(param):
     for i in range(N + 1):
         # Compute kappa ^ 2 = (dtheta / ds) ^ 2 + sin ^ 2(theta) * (dphi / ds) ^ 2
         s = ds * i
-        a_phi = param[0:n, 0]
-        a_theta = param[n:2*n, 0]
+        a_phi = param[0, 0:n]
+        a_theta = param[0, n:2*n]
         theta = f_evaluate(s, a_theta, state0[4])
         dtheta = f_derivate(s, a_theta)
         dphi = f_derivate(s, a_phi)
@@ -156,14 +169,14 @@ def costfun(param):
         Uflex = Uflex + Rf * kappa_2 * ds
 
         # Compute omega ^ 2 = ((dphi / ds) * cos(theta) + dpsi / ds) ^ 2
-        a_psi = param[2 * n + 0:3 * n, 0]
+        a_psi = param[0, 2 * n + 0:3 * n]
         dpsi = f_derivate(s, a_psi)
         omega_2 = (dphi * np.cos(theta) + dpsi)**2
         Utor = Utor + Rt * omega_2 * ds
 
         # Compute the extensional energy
         if Re is not 0.0:
-            a_epsilon = param[3 * n + 0:4 * n, 0]
+            a_epsilon = param[0, 3 * n + 0:4 * n]
             epsilon = f_evaluate(s, a_epsilon, 0.0)
             Uext = Uext + Re * (epsilon**2) * ds
 
@@ -189,17 +202,14 @@ def constraint_ineq(param):
     return c
 
 
-def constraint_eq(param, ceq):
-    # ceq = np.arange(9, dtype=np.float)
-    # param = param.reshape(1, -1)
-    a_phi = param[0:n, 0]
-    a_theta = param[n + 0:2 * n, 0]
-    a_psi = param[2 * n + 0:3 * n, 0]
-    a_epsilon = param[3 * n + 0:4 * n, 0]
-    # a_phi = param[0, 0:n]
-    # a_theta = param[0, n + 0:2 * n]
-    # a_psi = param[0, 2 * n + 0:3 * n]
-    # a_epsilon = param[0, 3 * n + 0:4 * n]
+def constraint_eq(param):
+    global n, s0, s1, ds, lx, ly, lz, state0, state1, Re
+    ceq = np.arange(9, dtype=np.float)
+    param = param.reshape(1, -1)
+    a_phi = param[0, 0:n]
+    a_theta = param[0, n + 0:2 * n]
+    a_psi = param[0, 2 * n + 0:3 * n]
+    a_epsilon = param[0, 3 * n + 0:4 * n]
 
     # Constraints at s = s0
     i = 0
@@ -233,7 +243,8 @@ def constraint_eq(param, ceq):
 
 
 def plotDLO(param):
-    # param = param.reshape(1, -1)
+    global s0, ds, s1, L
+    param = param.reshape(1, -1)
     T = np.eye(4)
     P_dat = None
     PHI_dat = None
@@ -243,7 +254,6 @@ def plotDLO(param):
         s = ds * i
         P = CalcPosition(s, param)
         PHI = CalcOrientation(s, param)
-        # T = RotAxeAngle('z', PHI[2])*RotAxeAngle('y', PHI[1])*RotAxeAngle('x', PHI[0])
         T = RotAxeAngle('z', PHI[2]).dot(RotAxeAngle('y', PHI[1])).dot(RotAxeAngle('x', PHI[0]))
         T[0:3, 3] = P.reshape(1, 3)
 
@@ -268,61 +278,32 @@ def plotDLO(param):
 
 
 if __name__ == '__main__':
-    start = time.time()
-    param0 = np.ones((4 * n, 1)) / 10
-    # Symbols/expressions
-    x = SX.sym('x', 24)
-    ceq = SX.sym('ceq', 9)
-    f = costfun(x)
-    g = constraint_eq(x, ceq)
-    # NLP declaration
-    nlp = {}
-    nlp['x'] = vertcat(x)
-    nlp['f'] = f
-    nlp['g'] = g
-    # Pick an NLP solver ipopt worhp sqpmethods
-    MySolver = "ipopt"
-    # Solver options
-    opts = {}
-    if MySolver == "sqpmethod":
-        opts["qpsol"] = "qpoases"
-        opts["qpsol_options"] = {"printLevel": "none"}
-    # Create solver instance
-    solver = nlpsol("solver", MySolver, nlp, opts)
-    # Solve the problem using a guess
-    sol = solver(x0=param0)
-    # Print solution
-    print("-----")
-    print("objective at solution = ", sol["f"])
-    print("primal solution = ", sol["x"])
+    start = time()
+    state0 = np.array([-0.2, -0.2, 0, 0, 0, 0])
+    lx = 0.4
+    ly = 0.4
+    lz = -0.3
+    ax = np.pi / 4
+    ay = np.pi / 2 + np.pi / 8 + np.pi / 4
+    az = np.pi / 4
+    state1 = (state0 + np.array([lx, ly, lz, ax, ay, az]))
 
-    param1 = np.array(sol['x'])
-    # #
-    # # param1 = np.array([0.24667206,  0.39269908,  0.06684409, -0.20733783, -0.0307971,
-    # #                  -0.03933423,  0.41423463,  1.37444679, -0.78153947, -0.39259707,
-    # #                  -0.03932026, -0.02163755, -0.20218397,  0.39269908, -0.08884203,
-    # #                  0.16295191,  0.03920437,  0.03923206,  0.2660282,  0.2660282,
-    # #                  0.2660282,  0.2660282,  0.2660282,  0.2660282])
+    para0 = np.ones((1, 4 * n)) / 1
+    shape, para1 = dlodynamics_3D(state0, state1, L, para0)
+
     #
-    [p_dat, PHI_dat, T_dat] = plotDLO(param1)
-    print(p_dat.shape)
+    # param1 = np.array([0.24667206,  0.39269908,  0.06684409, -0.20733783, -0.0307971,
+    #                  -0.03933423,  0.41423463,  1.37444679, -0.78153947, -0.39259707,
+    #                  -0.03932026, -0.02163755, -0.20218397,  0.39269908, -0.08884203,
+    #                  0.16295191,  0.03920437,  0.03923206,  0.2660282,  0.2660282,
+    #                  0.2660282,  0.2660282,  0.2660282,  0.2660282])
 
     plt.ion()
     plt.show()
     ax = plt.axes(projection='3d')
-    ax.plot(p_dat[:, 0], p_dat[:, 1], p_dat[:, 2], color='black', linewidth=3)
+    ax.plot(shape[:, 0], shape[:, 1], shape[:, 2], color='black', linewidth=3)
     ax.set_xlim3d(-0.5, 1)
     ax.set_ylim3d(-0.5, 1)
     ax.set_zlim3d(-0.8, 1)
-    T_world = np.eye(4)
-    T_base_ur5 = None
-    T_end_ur5 = None
-    T_base_shape = T_dat[0:4, 0:4]
-    T_end_shape = T_dat[(51 * 4 - 4):(51 * 4), 0:4]
-    DrawAllFrame(T_world, T_base_ur5, T_end_ur5, T_base_shape, T_end_shape, ax)
-    # print(T_base_shape)
-    # print(T_end_shape)
-    end = time.time()
-    print(end - start)
+    print(time() - start)
     plt.pause(100)
-
