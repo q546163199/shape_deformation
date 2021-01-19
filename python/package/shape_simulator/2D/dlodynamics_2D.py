@@ -15,7 +15,7 @@ Theta1 = 0.0
 Theta2 = 0.0
 
 
-def dlodynamics_2D(x1, y1, x2, y2, langle, rangle, cable_length, init=np.ones((1, 2 * 4 + 2)) / 10):
+def dlodynamics_2D(x1, y1, x2, y2, langle, rangle, cable_length, init=np.ones((1, 2 * 4 + 2)) / 10, format=1):
     global L, n, N, Lx, Ly, Theta1, Theta2
     L = cable_length
     Lx = x2 - x1
@@ -44,7 +44,36 @@ def dlodynamics_2D(x1, y1, x2, y2, langle, rangle, cable_length, init=np.ones((1
         DLO = np.vstack((DLO, np.array([px, py])))
         DLOangle = np.vstack((DLOangle, phi))
 
-    dloData = DLO
+    if format == 1:
+        dloData = DLO
+    else:
+        radius = 0.015
+        upper = np.zeros((98, 2))
+        lower = np.zeros((98, 2))
+        for i in range(1, 99):
+            if DLOangle[i] > 0:
+                theta = - (pi/2 - DLOangle[i])
+                upper[i - 1, 0] = DLO[i, 0] - radius * cos(theta)
+                upper[i - 1, 1] = DLO[i, 1] - radius * sin(theta)
+
+                lower[i - 1, 0] = DLO[i, 0] + radius * cos(theta)
+                lower[i - 1, 1] = DLO[i, 1] + radius * sin(theta)
+
+            else:
+                theta = pi / 2 + DLOangle[i]
+                upper[i - 1][0] = DLO[i, 0] + radius * cos(theta)
+                upper[i - 1, 1] = DLO[i, 1] + radius * sin(theta)
+
+                lower[i - 1, 0] = DLO[i, 0] - radius * cos(theta)
+                lower[i - 1, 1] = DLO[i, 1] - radius * sin(theta)
+
+        lower = np.flipud(lower)
+        contour = np.vstack((DLO[0, :], upper[:, :]))
+        contour = np.vstack((contour, DLO[-1, :]))
+        contour = np.vstack((contour, lower[:, :]))
+        contour = np.vstack((contour, DLO[0, :]))
+        dloData = contour
+
     return dloData, para_a
 
 
@@ -92,10 +121,11 @@ def constraint_ineq(x):
 if __name__ == '__main__':
     tic = time()
     para0 = np.ones((1, 2 * 4 + 2)) / 10
-    shape, para1 = dlodynamics_2D(0.0, 0.0, 0.7, 0.0, np.pi/6, -np.pi/6, 1.0, para0)
+    shape, para1 = dlodynamics_2D(0.1, 0.0, 0.7, 0.0, np.pi/6, -np.pi/6, 1.5, para0, 2)
     plt.xlim([-0.1, 0.8])
     plt.ylim([-0.1, 0.8])
-    plt.scatter(shape[:, 0], shape[:, 1])
+    plt.fill(shape[:, 0], shape[:, 1], 'r')
+    plt.scatter(shape[:, 0], shape[:, 1], c='k')
     plt.axis('square')
     plt.grid()
     print(time() - tic)
