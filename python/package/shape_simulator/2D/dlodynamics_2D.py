@@ -71,7 +71,6 @@ def dlodynamics_2D(x1, y1, x2, y2, langle, rangle, cable_length, init=np.ones((1
         contour = np.vstack((DLO[0, :], upper[:, :]))
         contour = np.vstack((contour, DLO[-1, :]))
         contour = np.vstack((contour, lower[:, :]))
-        contour = np.vstack((contour, DLO[0, :]))
         dloData = contour
 
     return dloData, para_a
