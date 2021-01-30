@@ -68,6 +68,6 @@ else
         end
     end
     lower = flipud(lower);
-    contour = [DLO(1,:);upper(2:99,:);DLO(100,:);lower(1:98,:);DLO(1,:)];
+    contour = [DLO(1,:);upper(2:99,:);DLO(100,:);lower(1:98,:)];
     dloData = contour;
 end
